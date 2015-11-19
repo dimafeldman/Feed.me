@@ -1,16 +1,48 @@
+<style>
+	.deal {
+		background: url('/img/falafel.jpg') 0 0;
+		min-width: 100%;
+		min-height: 150px;
+		background-size: cover;
+		border-radius: 6px;
+		padding:10px;
+	} 
+	.deal-title { margin-top:5px; max-width: 80%; padding:0 10px; } 
+	.deal-price { max-width:120px; padding:0 10px; } 
+	.deal-discount { max-width:120px; padding:0 10px; } 
+	.deal-desc {  } 
+</style>
+	
 
 <div class="dialog-overlay op-dark md-padding" layout="row" layout-align="center center">
 	<md-dialog>
 		<form ng-submit="submit()">
 			<md-dialog-content>
-				<div>{{ deal }}</div>
+				<div class="deal" layout="column">
+					<div layout="column" layout-align="start start">
+						<span class="deal-title md-headline bg-white fg-black"> {{ deal.title }} </span>
+						<span class="deal-price md-title op-white fg-black">{{ deal.price + '₪' }} </span>
+						<span class="deal-discount md-title op-white fg-black">Save: {{ deal.discount }} </span>
+						<br/>
+						<br/>
+						<p class="deal-desc op-white md-body-2 padding10"> {{ deal.description }} </p>
+					</div>
+				</div>
+				<div layout="row" layout-align="space-between end" style="padding:0 10px;">
+					<div class="deal-address"><span class="icon-location"></span> {{ deal.location }} </div>
+					<div class="deal-slots"><span class="icon-user"></span> {{ deal.subscribers.length }} / {{ deal.quantity }} </div>
+				</div>
+				
+				<br/>
+				<md-button class="md-primary md-raised padding5"><span class="icon-plus-2"></span>&nbsp; I'm interested </md-button>
+				
 			</md-dialog-content>
 			<md-toolbar>
 				<div class="md-toolbar-tools">
 					<h2>Deal Details:</h2>
 					<span flex></span>
 					<md-button class="md-icon-button" style="background-color: rgb(33, 150, 243);" ng-click="cancel()">
-						<div class="fg-white icon-cancel-2 icon-1x" aria-label="Close dialog">X</div>
+						<div class="fg-white icon-cancel-2 icon-1x" aria-label="Close dialog"></div>
 					</md-button>
 				</div>
 			</md-toolbar>

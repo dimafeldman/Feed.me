@@ -23,7 +23,7 @@ app.newDeal = function() {
 	return {
 		title: 'שאריות של פלאפל שלומי',
 		price: '10',
-		image: '/img/deal1.jpg',
+		image: '/img/falafel.jpg',
 		location: 'תל אביב, המסגר 35',
 		discount: '80%',
 		description: 'פלאפל טעים טעים',
@@ -56,6 +56,8 @@ app.controller('main', function($scope, $http, $mdDialog) {
 			})
 	}
 	
+	$scope.openDealModal('1');
+	
 	/*
 	$http.get('/getData')
 		.success(function (data) {
@@ -67,6 +69,7 @@ app.controller('main', function($scope, $http, $mdDialog) {
 
 app.controller('dealModal', function ($scope, $mdDialog, $http, $route, $location, deal) {
 	$scope.deal = deal;
+	console.log(deal)
 
 	$scope.hide = function () {
 		$mdDialog.hide();
