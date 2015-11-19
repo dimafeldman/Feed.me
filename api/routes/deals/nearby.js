@@ -12,7 +12,7 @@ module.exports = function *()
   // Validate radius
   if ( ! input.radius )
   {
-    this.throw(400, "Please provide a radius for the nearby search.");   
+    this.throw(400, "Please provide a radius for the nearby search.");
   }
   
   // Get distance (in KM) and convert to degrees (1km = 111.12 degrees)

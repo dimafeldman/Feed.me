@@ -15,6 +15,7 @@ module.exports = function *()
   // Find deal by ID
   var deal = yield Deal.findById(id);
   
+  // Bad ID?
   if ( ! deal._id )
   {
     this.throw(400, "An invalid deal ID was provided.");
