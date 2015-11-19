@@ -9,6 +9,10 @@ exports.set = function(app) {
 			when('/page2', {
 				templateUrl: 'page2.html',
 			}).
+			when('/add', {
+				controller: 'add',
+				templateUrl: 'deals-add.html',
+			}).
 			otherwise({
 				redirectTo: '/'
 			});

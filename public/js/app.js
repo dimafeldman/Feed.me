@@ -35,6 +35,34 @@ app.controller('layout', function($scope, $rootScope, $location, page, utils, $t
 
 });
 
+app.controller('add', function($scope, $http, $location, $mdDialog) {
+    
+    // Default deal
+    $scope.deal = {'seller': 'test'};
+    
+    // Save deal
+    $scope.saveDeal = function()
+    {
+        $scope.loading = true;
+        
+        $http.put('/deals', $scope.deal)
+        .success(function(res) 
+        {
+            $scope.loading = false;
+        
+            alert("Deal saved successfully!");
+            $location.path('/'); 
+        })
+        .error(function(err)
+        {
+            alert(err.message);
+            
+            $scope.loading = false;        
+        });
+    }
+});
+
+
 app.controller('main', function($scope, $http, $mdDialog) {
     console.log('main');
 
