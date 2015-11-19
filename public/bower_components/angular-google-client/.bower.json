@@ -1,0 +1,50 @@
+{
+  "name": "angular-google-client",
+  "authors": [
+    "Lorenzo Bugiani <lorenzo.bugiani@gmail.com>"
+  ],
+  "description": "Angularjs module to integrate Google API Client Library for JavaScript",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/canemacchina/angular-google-client.git"
+  },
+  "keywords": [
+    "Google",
+    "Google Cloud Endpoints",
+    "Google Client Library for JavaScript",
+    "Google App Engine",
+    "Google Picker",
+    "Google Signin",
+    "Angularjs",
+    "Angular Google Cloud Endpoints",
+    "Angular Google Client Library for JavaScript",
+    "Angularjs Google client library integration",
+    "Angular Google App Engine",
+    "Angular Google Picker",
+    "Angular Google Signin",
+    "Angular Google Api"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": ">=1.2.0"
+  },
+  "homepage": "https://github.com/canemacchina/angular-google-client",
+  "version": "2.0.0",
+  "_release": "2.0.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "2.0.0",
+    "commit": "dc26359f35094faaac1f808b138d2d53ed197b8b"
+  },
+  "_source": "git://github.com/canemacchina/angular-google-client.git",
+  "_target": "~2.0.0",
+  "_originalSource": "angular-google-client",
+  "_direct": true
+}
