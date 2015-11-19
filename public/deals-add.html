@@ -1,0 +1,58 @@
+<div layout="column" ng-cloak class="md-inline-form">
+  <md-content layout-padding>
+    
+    <form ng-submit="saveDeal()">
+      <!-- Title -->
+      <div layout layout-sm="column">
+        <md-input-container flex>
+          <label>Title</label>
+          <input ng-model="deal.title">
+        </md-input-container>
+        <md-input-container flex>
+          <label>Photo URL</label>
+          <input ng-model="deal.image">
+        </md-input-container>
+      </div>
+      
+      <!-- Description -->
+      <md-input-container class="md-block">
+        <label>Description</label>
+        <textarea ng-model="deal.description" columns="1" md-maxlength="150" rows="5"></textarea>
+      </md-input-container>
+      
+      <!-- Title -->
+      <div layout layout-sm="column">
+        <md-input-container flex>
+          <label>Price</label>
+          <input ng-model="deal.price">
+        </md-input-container>
+        <md-input-container flex>
+          <label>Discount %</label>
+          <input ng-model="deal.discount">
+        </md-input-container>
+      </div>
+      
+      <!-- Address -->
+      <div layout layout-sm="column">
+        <md-input-container flex>
+            <label>Address</label>
+            <input ng-model="deal.address">
+        </md-input-container>
+        <md-input-container flex>
+            <label>Quantity</label>
+            <input ng-model="deal.quantity">
+        </md-input-container>
+      </div>
+      <br /><br />
+      <!-- Submit -->
+      <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+  
+        <!-- Button -->      
+        <md-button class="md-raised md-primary" ng-if="! loading">Save</md-button>
+        
+        <!-- Loading -->
+        <md-progress-circular class="md-accent" md-mode="indeterminate" ng-if="loading"></md-progress-circular>
+      </section>
+    </form>
+  </md-content>
+</div>

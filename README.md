@@ -37,6 +37,7 @@ A list of all Node.js API endpoints.
       "discount": "50%",
       "image": "https://example.com/image.jpg",
       "created": "2015-11-19T15:42:02.152Z",
+      "when": "2015-11-19T23:00:00.152Z",
       "price": "100₪",
       "quantity": 25,
       "interested": 10,
@@ -64,6 +65,7 @@ A list of all Node.js API endpoints.
     "discount": "50%",
     "image": "https://example.com/image.jpg",
     "created": "2015-11-19T15:42:02.152Z",
+    "when": "2015-11-19T23:00:00.152Z",
     "seller": "Rak Basar",
     "price": "100₪",
     "quantity": 25,
@@ -125,6 +127,7 @@ A list of all Node.js API endpoints.
       "discount": "50%",
       "image": "https://example.com/image.jpg",
       "created": "2015-11-19T15:42:02.152Z",
+      "when": "2015-11-19T23:00:00.152Z",
       "seller": "Rak Basar",
       "price": "100₪",
       "quantity": 25,
@@ -148,15 +151,17 @@ A list of all Node.js API endpoints.
 ```
 {
     // minimum one parameter
+    // text: title or description
+    // location: choose either lat+lng or address
     "location": {"radius" : 10, // radius in KM
-                 "address" : "6 Baruc St, Tel Aviv, Israel", // choose either lat+lng or address
+                 "address" : "6 Baruc St, Tel Aviv, Israel", 
                  "lat": 34.3984,
                  "lng": 36.34198,         
-                 }
-    "text": "Hamburger", // title and description
+                 },
+    "text": "Hamburger", 
     "seller": "Moses",
-    "time_range" : ["22:42:02",
-                    "23:42:02"]
+    "time_range" : ["22:42",
+                    "23:42"]
 }
 ```
 
@@ -172,6 +177,7 @@ A list of all Node.js API endpoints.
       "seller": "Rak Basar",
       "image": "https://example.com/image.jpg",
       "created": "2015-11-19T15:42:02.152Z",
+      "when": "2015-11-19T23:00:00.152Z",
       "price": "100₪",
       "quantity": 25,
       "interested": 10,
@@ -191,7 +197,7 @@ A list of all Node.js API endpoints.
 ##### Request
 
 ```
-//mandatories: title, seller, quantity, address, price
+//mandatories: title, seller, quantity, address, price, when
 {
     "title": "220g Hamburger",
     "description": "A really tasty hamburger for half the price.",
@@ -199,6 +205,7 @@ A list of all Node.js API endpoints.
     "seller": "Rak Basar", 
     "price": "100₪", 
     "quantity": 25,
+    "when": "23:00",
     "image": "https://example.com/image.jpg",
     "address": "2 Baruc St, Tel Aviv, Israel" 
 }

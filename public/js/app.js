@@ -35,6 +35,34 @@ app.controller('layout', function($scope, $rootScope, $location, page, utils, $t
 
 });
 
+app.controller('add', function($scope, $http, $location, $mdDialog) {
+    
+    // Default deal
+    $scope.deal = {'seller': 'test'};
+    
+    // Save deal
+    $scope.saveDeal = function()
+    {
+        $scope.loading = true;
+        
+        $http.put('/deals', $scope.deal)
+        .success(function(res) 
+        {
+            $scope.loading = false;
+        
+            alert("Deal saved successfully!");
+            $location.path('/'); 
+        })
+        .error(function(err)
+        {
+            alert(err.message);
+            
+            $scope.loading = false;        
+        });
+    }
+});
+
+
 app.controller('main', function($scope, $http, $mdDialog) {
     console.log('main');
 
@@ -113,14 +141,17 @@ app.controller('AppCtrl', function($scope) {
 app.controller('gMap', function($scope, $http, $mdDialog, uiGmapGoogleMapApi) {
     var dealMarkers = [];
 
+    $('.angular-google-map-container').css('height', window.innerHeight - 150);
+
     $http.get('/deals')
         .success(function(data) {
             _.each(data.deals, function(deal, i) {
                 dealMarkers.push({
                     id: deal._id,
                     latitude: deal.location[0],
-                    longitude: deal.location[1]
-                    //latitude: 32.066838, longitude: 34.787784
+                    longitude: deal.location[1],
+                    icon: '/img/foodicon.png',
+                    latitude: 32.066838, longitude: 34.787784
                 })
             });
 
