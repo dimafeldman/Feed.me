@@ -128,8 +128,7 @@ app.controller('gMap', function($scope, $http, uiGmapGoogleMapApi) {
         .success(function(data) {
             _.each(data.deals, function(deal, i) {
                 dealMarkers.push({
-                    idKey: i,
-                    title: 'test',
+                    id: i,
                     latitude: deal.location[0],
                     longitude: deal.location[1]
                 })
@@ -147,6 +146,9 @@ app.controller('gMap', function($scope, $http, uiGmapGoogleMapApi) {
                             },
                             zoom: 16
                         };
+
+                        console.log($scope.map.markerSelf);
+                        console.log(dealMarkers[0]);
 
                         $scope.selfMarker = {
                             id: 0,
