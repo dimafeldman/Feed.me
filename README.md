@@ -147,12 +147,13 @@ A list of all Node.js API endpoints.
 
 ```
 {
-    "location":
-    {
-        "lat": 34.3984,
-        "lng": 36.34198,
-    },
-    "query": "Hamburger"
+    // minimum one parameter
+    "location": {"address" : "6 Baruc St, Tel Aviv, Israel", // user's address
+                 "radius" : 10}, // radius in KM
+    "text": "Hamburger", // title and description
+    "seller": "Moses",
+    "time_range" : ["22:42:02",
+                    "23:42:02"]
 }
 ```
 
@@ -165,6 +166,7 @@ A list of all Node.js API endpoints.
       "_id": "564dedca8946b04417127d07",
       "description": "A really tasty hamburger for half the price.",
       "discount": "50%",
+      "seller": "Rak Basar",
       "image": "https://example.com/image.jpg",
       "created": "2015-11-19T15:42:02.152Z",
       "price": "100₪",
