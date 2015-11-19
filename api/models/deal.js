@@ -7,10 +7,11 @@ var schema = new db.Schema(
     title:          String,
     price:          String,
     image:          String,
+    location:       Object,
     discount:       String,
     description:    String,
-    created:        Number,
-    quantity:       Number
+    quantity:       Number,
+    created:        Date
 } );
 
 // Return model with schema linked to collection

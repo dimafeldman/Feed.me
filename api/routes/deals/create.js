@@ -6,12 +6,28 @@ module.exports = function *()
   // Parse input from request body
   var input = this.request.body;
   
+  // Required fields
+  var required = [ 'title', 'price', 'quantity' ];
+  
+  // Traverse required fields
+  for ( var i in required )
+  {
+    // Get current field
+    var field = required[i];
+    
+    // Is it empty?
+    if ( ! input[ field ] )
+    {
+      this.throw(400, "Please provide the " + field + "." );
+    }
+  }
+  
   // Create new deal model
   var deal = new Deal();
   
   // Set properties
   deal.title = input.title;
-  deal.created_on = new Date();
+  deal.created = new Date();
   deal.updated_on = new Date();
   deal.description = input.description;
   
