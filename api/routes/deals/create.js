@@ -1,5 +1,5 @@
 // Require deal model
-var Deal = require('../models/deal');
+var Deal = require('../../models/deal');
 
 module.exports = function *()
 {

@@ -9,8 +9,8 @@ var schema = new db.Schema(
     image:          String,
     discount:       String,
     description:    String,
-    created:        Integer,
-    quantity:       Integer
+    created:        Number,
+    quantity:       Number
 } );
 
 // Return model with schema linked to collection
