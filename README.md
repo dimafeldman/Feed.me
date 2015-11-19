@@ -22,6 +22,29 @@ Go to <a href="http://localhost:3000/" target="_blank">http://localhost:3000/</a
 
 ### API Endpoints
 
+A list of all Node.js API endpoints.
+
+#### GET /deals
+
+##### Response
+
+```
+{
+  "deals": [
+    {
+      "_id": "564dedca8946b04417127d07",
+      "description": "A really tasty hamburger for half the price.",
+      "discount": "50%",
+      "image": "https://example.com/image.jpg",
+      "created": "2015-11-19T15:42:02.152Z",
+      "price": "100₪",
+      "quantity": 25,
+      "title": "220g Hamburger"
+    }
+  ]
+}
+```
+
 #### PUT /deals
 
 ##### Request
