@@ -3,7 +3,6 @@ var http        = require('http')
   , koa         = require('koa')
   , logger      = require('koa-logger')
   , serve       = require('koa-static')
-  , stylus      = require('koa-stylus')
   , bodyParser  = require('koa-bodyparser');
 
 // Custom Koa middleware
@@ -18,7 +17,6 @@ app.use(error());
 app.use(logger());
 app.use(bodyParser());
 app.use(serve('./public'));
-app.use(stylus('./public'));
 
 // Define routes
 router(app);
