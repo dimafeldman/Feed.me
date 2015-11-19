@@ -4,6 +4,7 @@ var db = require('../lib/db');
 // Prepare schema
 var schema = new db.Schema(
 {
+    seller:         String,
     title:          String,
     price:          String,
     image:          String,
