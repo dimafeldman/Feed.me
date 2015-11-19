@@ -32,6 +32,7 @@ module.exports = function *()
   var deal = new Deal();
   
   // Set properties
+  deal.interested = 0;
   deal.location = location;
   deal.title = input.title;
   deal.price = input.price;
