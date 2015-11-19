@@ -1,18 +1,33 @@
-//---------------------------
-// Set global base
-//---------------------------
+// Dependencies
+var http        = require('http')
+  , koa         = require('koa')
+  , logger      = require('koa-logger')
+  , serve       = require('koa-static')
+  , stylus      = require('koa-stylus')
+  , bodyParser  = require('koa-bodyparser');
 
-global.__base = __dirname + '/';
+// Custom Koa middleware
+var router = require('./api/router');
+var error = require('./api/lib/error');
 
-//---------------------------
-// Set global app to working
-// directory for modules
-//---------------------------
+// Create koa app
+var app = koa();
 
-global.__app = __dirname + '/app/';
+// Koa middleware
+app.use(error());
+app.use(logger());
+app.use(bodyParser());
+app.use(serve('./public'));
+app.use(stylus('./public'));
 
-//---------------------------
-// Initialize app
-//---------------------------
+// Define routes
+router(app);
 
-require(__app + 'init')();
+// Define configurable port
+var port = process.env.PORT || 3000;
+
+// Listen for connections
+app.listen(port);
+
+// Log port
+console.log('Server listening on port ' + port);
