@@ -5,6 +5,7 @@ var router = require('koa-router')();
 module.exports = function (app)
 {
   // Deal-related routes
+  router.get('/deals', require('./routes/deals/get'));
   router.put('/deals', require('./routes/deals/create'));
   
   // Use them  
