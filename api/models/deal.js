@@ -7,12 +7,20 @@ var schema = new db.Schema(
     title:          String,
     price:          String,
     image:          String,
-    location:       Object,
     discount:       String,
     description:    String,
     quantity:       Number,
-    created:        Date
+    interested:     [Object],
+    created:        Date,    
+    location:
+    {
+        type: [Number],
+        index: '2d'
+    }
 } );
+
+// Index locatio field as 2d geospatial index
+schema.index({location: '2d'});
 
 // Return model with schema linked to collection
 module.exports = db.model( 'deals', schema );

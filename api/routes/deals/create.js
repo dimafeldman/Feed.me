@@ -23,7 +23,7 @@ module.exports = function *()
   }
   
   // Location validation
-  if ( ! input['location']['lat'] || ! input['location']['lng'] )
+  if ( ! input.location.lat || ! input.location.lng )
   {
     this.throw(400, "Please provide a location object with latitude and longitude values.");   
   }
@@ -35,13 +35,15 @@ module.exports = function *()
   deal.title = input.title;
   deal.price = input.price;
   deal.image = input.image;
-  deal.location = input.location;
   deal.discount = input.discount;
   deal.quantity = input.quantity;
   deal.description = input.description;
   
   // Set creation date
   deal.created = new Date();
+  
+  // Store location (for geospatial index)
+  deal.location = [input.location.lat, input.location.lng];
   
   // Save deal
   yield deal.save();

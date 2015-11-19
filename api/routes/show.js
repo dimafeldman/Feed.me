@@ -1,7 +1,8 @@
 // Require todo model
 var Todo = require('../models/todo');
 
-module.exports = function *(id) {
+module.exports = function *(id) 
+{
   // Find todo by ID
   var result = yield Todo.findById(id);
   
