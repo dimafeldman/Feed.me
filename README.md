@@ -205,5 +205,4 @@ A list of all Node.js API endpoints.
 
 ### Future Endpoints
 
-1. Login/Register?
-2. Interested in Deals
+1. Login/Register
