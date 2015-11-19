@@ -2,11 +2,6 @@
 	Content
 </md-content>
 
-<div layout-margin layout="row" layout-align="space-around center" layout-wrap>
-	kdjahdkjhasdkjh
-</div>
-
-
 <md-content layout="column" flex class="md-padding">
 
 	<div ng-controller="AppCtrl" ng-cloak>
@@ -23,6 +18,21 @@
 					</div>
 				</md-list-item>
 			</md-list>
+		</md-content>
+	</div>
+	<div ng-controller="gMap" ng-cloak>
+		<md-content>
+			<ui-gmap-google-map center='map.center' zoom='map.zoom'>
+				<ui-gmap-marker
+						idKey='selfMarker.id'
+						coords='selfMarker.coords'
+						click=''
+						options=''
+						events=''
+						control=''
+						>
+				</ui-gmap-marker>
+			</ui-gmap-google-map>
 		</md-content>
 	</div>
 
