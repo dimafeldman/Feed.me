@@ -32,8 +32,13 @@ Go to <a href="http://localhost:3000/" target="_blank">http://localhost:3000/</a
     "description": "A really tasty hamburger for half the price.",
     "discount": "50%",
     "price": "100₪",
-    "quantity": "25",
-    "image": "https://example.com/image.jpg"
+    "quantity": 25,
+    "image": "https://example.com/image.jpg",
+    "location":
+    {
+        "lat": 34.3984,
+        "lng": 36.34198,
+    }
 }
 ```
 

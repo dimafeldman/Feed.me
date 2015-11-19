@@ -27,6 +27,27 @@ app.controller('main', function($scope, $http) {
 	);
 });
 
+app.controller('AppCtrl', function($scope) {
+		var imagePath = 'img/list/60.jpeg';
+		$scope.providers  = [
+			{
+				image: imagePath,
+				name: 'Awesome restaurant',
+				description: " I'll be in your neighborhood doing errands",
+			},
+			{
+				image: imagePath,
+				name: 'Awesome restaurant',
+				description: " I'll be in your neighborhood doing errands"
+			},
+			{
+				image: imagePath,
+				name: 'Awesome restaurant',
+				description: " I'll be in your neighborhood doing errands"
+			}
+		];
+	});
+
 app.controller('AppController', function($mdSidenav) {
 	var vm = this;
 
