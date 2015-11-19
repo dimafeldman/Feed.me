@@ -85,6 +85,15 @@ app.controller('dealModal', function ($scope, $mdDialog, $http, $route, $locatio
             clickOutsideToClose: true
         })
     };
+    
+    $scope.hide = function () {
+		$mdDialog.hide();
+	};
+	$scope.cancel = function () {
+		console.log('cancel!');
+		$mdDialog.cancel();
+	};
+	
 });
 
 app.controller('AppCtrl', function($scope) {
