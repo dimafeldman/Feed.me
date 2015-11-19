@@ -11,7 +11,7 @@ var schema = new db.Schema(
     description:    String,
     address:        String,
     quantity:       Number,
-    interested:     [Object],
+    interested:     Number,
     created:        Date,
     location:
     {

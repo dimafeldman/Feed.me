@@ -12,6 +12,7 @@ module.exports = function (app)
   
   // Deal-related special routes
   router.post('/deals/nearby', require('./routes/deals/nearby'));
+  router.get('/deals/:id/interested', require('./routes/deals/interested/set'));
   
   // Use them  
   app.use(router.routes()).use(router.allowedMethods());

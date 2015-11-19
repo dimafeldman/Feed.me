@@ -13,10 +13,7 @@ module.exports = function *()
   if ( ! input.radius )
   {
     this.throw(400, "Please provide a radius for the nearby search.");
-  }
-  
-  // Get distance (in KM) and convert to degrees (1km = 111.12 degrees)
-  var maxDistance = input.radius / 111.12;
+  }  
   
   // Validate location
   if ( ! input.location || ! input.location.lng || ! input.location.lng )
@@ -24,6 +21,9 @@ module.exports = function *()
     this.throw(400, "Please provide a location object with latitude and longitude values.");   
   }
   
+  // Get distance (in KM) and convert to degrees (1km = 111.12 degrees)
+  var maxDistance = input.radius / 111.12;
+
   // Prepare coordinates array
   var location = [ input.location.lat, input.location.lng ];
   
