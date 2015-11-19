@@ -1,197 +1,51 @@
-<!DOCTYPE HTML>
-<html lang="en" ng-app="Pushy">
-	<head>
-        <!-- Page title -->
-		<title>Pushy</title>
+<html lang="en" ng-app="StarterApp">
 
-        <!-- SEO -->
-        <meta name="description" content="Pushy is the most reliable push notification service for Android." />
-        <meta name="keywords" content="pushy, push, notifications, service, android, gcm, socket, cheap, reliable, stable" />
+<head>
+    <meta name="viewport" content="initial-scale=1"/>
+    <link rel="stylesheet" href="../node_modules/angular-material/angular-material.min.css">
+</head>
 
-        <!-- Page encoding -->
-        <meta charset="utf-8">
+<body layout="column" ng-controller="AppController as vm">
+<md-toolbar layout="row">
+    <div class="md-toolbar-tools">
+        <md-button ng-click="vm.toggleSidenav('left')" hide-gt-sm class="md-icon-button">
+            <md-icon aria-label="Menu">
+            </md-icon>
+        </md-button>
+        <h1>Angular Material: &nbsp; Starter CodePen </h1>
+    </div>
+</md-toolbar>
+<div layout="row" flex>
+    <md-sidenav layout="column" class="md-sidenav-left md-whiteframe-4dp" md-component-id="left"
+                md-is-locked-open="$mdMedia('gt-sm')">
+        <md-button class="md-accent">Button 1</md-button>
+        <md-button class="md-accent">Button 2</md-button>
+    </md-sidenav>
+    <div layout="column" flex id="content">
+        <md-content layout="column" flex class="md-padding">
+            This Starter Application consists of a Toolbar, SideNav (with two buttons), and Content area.
+            <p>This is the content area! </p>
+        </md-content>
+    </div>
+</div>
+<!-- Angular Material Dependencies -->
+<script src="../node_modules/angular/angular.min.js"></script>
+<script src="../node_modules/angular-animate/angular-animate.min.js"></script>
+<script src="../node_modules/angular-aria/angular-aria.min.js"></script>
 
-        <!-- Shortcut icon -->
-        <link rel="shortcut icon" href="/assets/images/favicon.ico" />
+<script src="../node_modules/angular-material/angular-material.min.js"></script>
+<script>
+    var app = angular.module('StarterApp', ['ngMaterial']);
 
-		<!--[if lte IE 8]>
-            <script src="/assets/css/ie/html5shiv.js"></script>
-        <![endif]-->
+    app.controller('AppController', function($mdSidenav) {
+        var vm = this;
 
-        <!-- jQuery & Plugins -->
-		<script src="/assets/js/jquery.min.js"></script>
-		<script src="/assets/js/jquery.scrolly.min.js"></script>
-		<script src="/assets/js/jquery.dropotron.min.js"></script>
-		<script src="/assets/js/jquery.scrollex.min.js"></script>
-		<script src="/assets/js/jquery.tooltipster.min.js"></script>
+        vm.toggleSidenav = function(menuId) {
+            $mdSidenav(menuId).toggle();
+        };
 
-        <!-- Tooltipster -->
-        <link rel="stylesheet" type="text/css" href="/assets/css/tooltipster.css" />
-        <link rel="stylesheet" type="text/css" href="/assets/css/themes/tooltipster-punk.css" />
+    });
+</script>
+</body>
 
-        <!-- AngularJS -->
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-aria.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-animate.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-route.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-cookies.min.js"></script>
-
-        <!-- Angular Material -->
-        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/0.9.4/angular-material.min.css">
-        <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700,600,300' rel='stylesheet' type='text/css'>
-
-        <!-- Angular Material Dependencies -->
-        <script src="https://ajax.googleapis.com/ajax/libs/angular_material/0.9.4/angular-material.min.js"></script>
-
-        <!-- Pushy AngularJS -->
-        <script src="/assets/js/angular/app.js?v=1.1"></script>
-        <script src="/assets/js/angular/services.js?v=1.1"></script>
-        <script src="/assets/js/angular/controllers.js?v=1.1"></script>
-        <script src="/assets/js/angular/directives.js?v=1.1"></script>
-        <script src="/assets/js/angular/filters.js?v=1.1"></script>
-
-        <!-- Skel & Plugins -->
-		<script src="/assets/js/skel.min.js"></script>
-		<script src="/assets/js/skel-layers.min.js"></script>
-
-        <!-- Stripe.js -->
-        <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
-
-        <!-- init.js -->
-		<script src="/assets/js/init.js"></script>
-
-        <!-- Loading -->
-        <link rel="stylesheet" href="/assets/css/loading.css" />
-
-        <!-- No JS styling -->
-		<noscript>
-			<link rel="stylesheet" href="/assets/css/skel.css" />
-			<link rel="stylesheet" href="/assets/css/style.css" />
-			<link rel="stylesheet" href="/assets/css/style-xlarge.css" />
-		</noscript>
-
-
-        <!-- IE9 Fixes -->
-        <!--[if lte IE 9]>
-            <link rel="stylesheet" href="/assets/css/ie/v9.css" />
-        <![endif]-->
-
-        <!-- IE8 Fixes -->
-        <!--[if lte IE 8]>
-            <link rel="stylesheet" href="/assets/css/ie/v8.css" />
-        <![endif]-->
-
-        <!-- Kausha Script Logo Font -->
-        <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
-    </head>
-	<body class="is-loading" ng-class="{ landing: isLandingPage() }">
-
-        <!-- Header -->
-        <header id="header" class="skel-layers-fixed">
-            <h1 id="logo">
-                <a href="/">
-                    Pushy
-                </a>
-            </h1>
-            <nav id="nav" active-nav>
-                <ul>
-                    <li>
-                        <a href="/">
-                            <md-button class="nav-link" url="/">
-                                Home
-                            </md-button>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/pricing">
-                            <md-button class="nav-link" url="/pricing">
-                                Pricing
-                            </md-button>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/docs">
-                            <md-button class="nav-link" url="/docs">
-                                Documentation
-                            </md-button>
-                        </a>
-                    </li>
-                    <li ng-if="isLoggedIn()">
-                        <a href="/dashboard">
-                            <md-button class="nav-link" url="/dashboard">
-                                Account
-                            </md-button>
-                        </a>
-                    </li>
-                    <li ng-if="! isLoggedIn()">
-                        <a href="/login">
-                            <md-button class="nav-link" url="/login">
-                                Log in
-                            </md-button>
-                        </a>
-                    </li>
-                    <li ng-if="! isLoggedIn()">
-                        <a href="/try">
-                            <md-button class="nav-link" url="/try">
-                                Sign up
-                            </md-button>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/contact">
-                            <md-button class="nav-link" url="/contact">
-                                Contact
-                            </md-button>
-                        </a>
-                    </li>
-                    <li ng-if="isLoggedIn()">
-                        <a href="/logout">
-                            <md-button class="nav-link" url="/logout">
-                                Log out
-                            </md-button>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-        </header>
-
-        <!-- Main -->
-        <div ng-view="ng-view" class="min-height" autoscroll="true"></div>
-
-        <!-- Footer -->
-        <footer id="footer" ng-show="! isDocumentationPage()">
-            <ul class="icons">
-                <li>
-                    <a href="mailto:support@pushy.me" target="_blank" class="icon alt fa-send">
-                        <span class="label">Email</span>
-                        <span class="link">support@pushy.me</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="tel:+14159065305" class="icon alt fa-phone">
-                        <span class="label">Phone</span>
-                        <span class="link">+1-415-906-5305</span>
-                    </a>
-                </li>
-            </ul>
-            <ul class="copyright">
-                <li>&copy; 2015 Pushy. All rights reserved.</li>
-                <li><a href="/terms">Terms &amp; Privacy</a></li>
-                <li><a href="/contact">Contact</a></li>
-                <li><a href="http://html5up.net" target="_blank">HTML5 UP</a></li>
-            </ul>
-        </footer>
-
-        <!-- Google Analytics -->
-        <script>
-            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-                    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-            ga('create', 'UA-2336511-14', 'auto');
-            ga('send', 'pageview');
-
-        </script>
-	</body>
 </html>
