@@ -52,25 +52,29 @@ app.controller('layout', function($scope, $rootScope, $location, page, utils, $t
 });
 
 app.controller('main', function($scope, $http, $mdDialog) {
-	console.log('main');
-	
-	$scope.deals = [app.newDeal(), app.newDeal()];
-	
-	$scope.openDealModal = function(dealId){
-		$mdDialog.show({
-				controller: 'dealModal',
-				templateUrl: './deal-modal.html',
-				locals: { deal: $scope.deals.filter(function(x){return x.id == dealId})[0] },
-				parent: angular.element(document.body),
-				clickOutsideToClose: true
-			})
-	};
-	
-	//$scope.openDealModal('1');
+    console.log('main');
+
+    $scope.deals = [app.newDeal(), app.newDeal()];
+
+    $scope.openDealModal = function(dealId) {
+        $mdDialog.show({
+            controller: 'dealModal',
+            templateUrl: './deal-modal.html',
+            locals: {
+                deal: $scope.deals.filter(function(x) {
+                    return x.id == dealId
+                })[0]
+            },
+            parent: angular.element(document.body),
+            clickOutsideToClose: true
+        })
+    };
+
+    //$scope.openDealModal('1');
 });
 
-app.controller('dealModal', function ($scope, $mdDialog, $http, $route, $location, deal) {
-	$scope.deal = deal;
+app.controller('dealModal', function($scope, $mdDialog, $http, $route, $location, deal) {
+    $scope.deal = deal;
 
     $scope.openDealModal = function(dealId) {
         $mdDialog.show({
@@ -109,41 +113,47 @@ app.controller('AppCtrl', function($scope) {
 });
 
 app.controller('gMap', function($scope, $http, uiGmapGoogleMapApi) {
-    $scope.dealMarkers = [];
+    var dealMarkers = [];
 
     $http.get('/deals')
-     .success(function(data) {
-        _.each(data.deals, function(deal) {
-            $scope.dealMarkers.push({
-                coords: {latitude: deal.location[0], longitude: deal.location[1]}
-            })
-        });
-     }
-    );
-
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function(position) {
-            uiGmapGoogleMapApi.then(function(maps) {
-                $scope.map        = {
-                    //center: {latitude: position.coords.latitude, longitude: position.coords.longitude},
-                    center: {latitude: 32.066838, longitude: 34.787784},
-                    markerSelf: {
-                        latitude: position.coords.latitude,
-                        longitude: position.coords.longitude
-                    },
-                    zoom: 16
-                };
-                $scope.selfMarker = {
-                    id: 0,
-                    //coords: {latitude: position.coords.latitude, longitude: position.coords.longitude},
-                    coords: {latitude: 32.066838, longitude: 34.787784},
-                    options: {draggable: true}
-                };
+        .success(function(data) {
+            _.each(data.deals, function(deal, i) {
+                dealMarkers.push({
+                    idKey: i,
+                    title: 'test',
+                    latitude: deal.location[0],
+                    longitude: deal.location[1]
+                })
             });
-        });
-    } else {
-        alert('GEO location is not allowed in your browser.');
-    }
+
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    uiGmapGoogleMapApi.then(function(maps) {
+                        $scope.map        = {
+                            //center: {latitude: position.coords.latitude, longitude: position.coords.longitude},
+                            center: {latitude: 32.066838, longitude: 34.787784},
+                            markerSelf: {
+                                latitude: position.coords.latitude,
+                                longitude: position.coords.longitude
+                            },
+                            zoom: 16
+                        };
+
+                        $scope.selfMarker = {
+                            id: 0,
+                            //coords: {latitude: position.coords.latitude, longitude: position.coords.longitude},
+                            coords: {latitude: 32.066838, longitude: 34.787784},
+                            options: {draggable: true}
+                        };
+
+                        $scope.dealMarkers = dealMarkers;
+                    });
+                });
+            } else {
+                alert('GEO location is not allowed in your browser.');
+            }
+        }
+    );
 });
 
 app.controller('AppController', function($mdSidenav) {
