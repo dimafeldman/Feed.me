@@ -64,6 +64,7 @@ A list of all Node.js API endpoints.
     "discount": "50%",
     "image": "https://example.com/image.jpg",
     "created": "2015-11-19T15:42:02.152Z",
+    "seller": "Rak Basar",
     "price": "100₪",
     "quantity": 25,
     "interested": 10,
@@ -124,6 +125,7 @@ A list of all Node.js API endpoints.
       "discount": "50%",
       "image": "https://example.com/image.jpg",
       "created": "2015-11-19T15:42:02.152Z",
+      "seller": "Rak Basar",
       "price": "100₪",
       "quantity": 25,
       "interested": 10,
@@ -185,13 +187,14 @@ A list of all Node.js API endpoints.
 
 ```
 {
-    "title": "220g Hamburger",
+    "title": "220g Hamburger", // mandatory
     "description": "A really tasty hamburger for half the price.",
     "discount": "50%",
-    "price": "100₪",
-    "quantity": 25,
+    "seller": "Rak Basar", // mandatory
+    "price": "100₪", // mandatory
+    "quantity": 25, // mandatory
     "image": "https://example.com/image.jpg",
-    "address": "2 Baruc St, Tel Aviv, Israel"
+    "address": "2 Baruc St, Tel Aviv, Israel" // mandatory
 }
 ```
 
