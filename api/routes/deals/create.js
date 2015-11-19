@@ -1,5 +1,6 @@
 // Require deal model
 var Deal = require('../../models/deal');
+var Gps = require('../../lib/gps');
 
 // Generator-compatible request library
 var request = require('co-request');
@@ -10,7 +11,7 @@ module.exports = function *()
   var input = this.request.body;
   
   // Required fields
-  var required = [ 'title', 'price', 'quantity', 'address' ];
+  var required = [ 'title', 'price', 'quantity', 'address', 'seller'];
   
   // Traverse required fields
   for ( var i in required )
@@ -26,7 +27,7 @@ module.exports = function *()
   }
   
   // Geocode the address via the Google Maps Geocoding API
-  var location = yield exports.geocodeAddress(input.address);
+  var location = yield Gps.geocodeAddress(input.address);
   
   // Create new deal model
   var deal = new Deal();
@@ -35,6 +36,7 @@ module.exports = function *()
   deal.interested = 0;
   deal.location = location;
   deal.title = input.title;
+  deal.seller = input.seller;
   deal.price = input.price;
   deal.image = input.image;
   deal.address = input.address;
@@ -51,27 +53,3 @@ module.exports = function *()
   // Return success
   this.body = { success: true };
 };
-
-exports.geocodeAddress = function*(address)
-{
-  // Google Maps Geocoding API URL
-  var url = "https://maps.googleapis.com/maps/api/geocode/json?address=" + encodeURIComponent(address);
-  
-  // Geocode the address via the Google Maps Geocoding API
-  var geocode = yield request.get({url:url, json:true});
-  
-  // Get geocode response
-  var response = geocode.body;
-  
-  // Failed?
-  if ( response.results.length == 0 )
-  {
-    throw new Error("An invalid address was provided.");
-  }
-  
-  // Get first result
-  var result = response.results[0];
-  
-  // Return 2d result array
-  return [result.geometry.location.lat, result.geometry.location.lng];
-}

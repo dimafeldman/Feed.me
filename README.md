@@ -64,6 +64,7 @@ A list of all Node.js API endpoints.
     "discount": "50%",
     "image": "https://example.com/image.jpg",
     "created": "2015-11-19T15:42:02.152Z",
+    "seller": "Rak Basar",
     "price": "100₪",
     "quantity": 25,
     "interested": 10,
@@ -124,6 +125,7 @@ A list of all Node.js API endpoints.
       "discount": "50%",
       "image": "https://example.com/image.jpg",
       "created": "2015-11-19T15:42:02.152Z",
+      "seller": "Rak Basar",
       "price": "100₪",
       "quantity": 25,
       "interested": 10,
@@ -145,12 +147,13 @@ A list of all Node.js API endpoints.
 
 ```
 {
-    "location":
-    {
-        "lat": 34.3984,
-        "lng": 36.34198,
-    },
-    "query": "Hamburger"
+    // minimum one parameter
+    "location": {"address" : "6 Baruc St, Tel Aviv, Israel", // user's address
+                 "radius" : 10}, // radius in KM
+    "text": "Hamburger", // title and description
+    "seller": "Moses",
+    "time_range" : ["22:42:02",
+                    "23:42:02"]
 }
 ```
 
@@ -163,6 +166,7 @@ A list of all Node.js API endpoints.
       "_id": "564dedca8946b04417127d07",
       "description": "A really tasty hamburger for half the price.",
       "discount": "50%",
+      "seller": "Rak Basar",
       "image": "https://example.com/image.jpg",
       "created": "2015-11-19T15:42:02.152Z",
       "price": "100₪",
@@ -184,14 +188,16 @@ A list of all Node.js API endpoints.
 ##### Request
 
 ```
+//mandatories: title, seller, quantity, address, price
 {
     "title": "220g Hamburger",
     "description": "A really tasty hamburger for half the price.",
     "discount": "50%",
-    "price": "100₪",
+    "seller": "Rak Basar", 
+    "price": "100₪", 
     "quantity": 25,
     "image": "https://example.com/image.jpg",
-    "address": "2 Baruc St, Tel Aviv, Israel"
+    "address": "2 Baruc St, Tel Aviv, Israel" 
 }
 ```
 
