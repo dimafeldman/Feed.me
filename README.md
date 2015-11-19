@@ -40,7 +40,11 @@ A list of all Node.js API endpoints.
       "price": "100₪",
       "quantity": 25,
       "title": "220g Hamburger",
-      "address": "2 Baruc St, Tel Aviv, Israel"
+      "address": "2 Baruc St, Tel Aviv, Israel",
+      "location": [
+        32.072176,
+        34.808871
+      ]
     }
   ]
 }
@@ -62,7 +66,11 @@ A list of all Node.js API endpoints.
     "price": "100₪",
     "quantity": 25,
     "title": "220g Hamburger",
-    "address": "2 Baruc St, Tel Aviv, Israel"
+    "address": "2 Baruc St, Tel Aviv, Israel",
+    "location": [
+        32.072176,
+        34.808871
+      ]
   }
 }
 ```
@@ -107,7 +115,11 @@ A list of all Node.js API endpoints.
       "price": "100₪",
       "quantity": 25,
       "title": "220g Hamburger",
-      "address": "2 Baruc St, Tel Aviv, Israel"
+      "address": "2 Baruc St, Tel Aviv, Israel",
+      "location": [
+        32.072176,
+        34.808871
+      ]
     }
   ]
 }
@@ -143,7 +155,11 @@ A list of all Node.js API endpoints.
       "price": "100₪",
       "quantity": 25,
       "title": "220g Hamburger",
-      "address": "2 Baruc St, Tel Aviv, Israel"
+      "address": "2 Baruc St, Tel Aviv, Israel",
+      "location": [
+        32.072176,
+        34.808871
+      ]
     }
   ]
 }

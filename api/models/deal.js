@@ -9,9 +9,10 @@ var schema = new db.Schema(
     image:          String,
     discount:       String,
     description:    String,
+    address:        String,
     quantity:       Number,
     interested:     [Object],
-    created:        Date,    
+    created:        Date,
     location:
     {
         type: [Number],
