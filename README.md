@@ -65,6 +65,17 @@ A list of all Node.js API endpoints.
 }
 ```
 
+
+#### DELETE /deals/:id
+
+##### Response
+
+```
+{
+  "success": true
+}
+```
+
 #### POST /deals/nearby
 
 ##### Request
