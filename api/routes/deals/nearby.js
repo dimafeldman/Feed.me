@@ -16,7 +16,7 @@ module.exports = function *()
   }  
   
   // Validate location
-  if ( ! input.location || ! input.location.lng || ! input.location.lng )
+  if ( ! input.location || ! input.location.lat || ! input.location.lng )
   {
     this.throw(400, "Please provide a location object with latitude and longitude values.");   
   }

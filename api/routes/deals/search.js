@@ -55,6 +55,43 @@ module.exports = function *()
   }
 
 
+  if( input.location )
+  {
+    if( ! input.location.radius)
+    {
+       this.throw(400, "Location must have radius.");
+    }
+    
+    if( ! input.location.address && (! input.location.lat || ! input.location.lng))
+    {
+       this.throw(400, "Location must have either address or lat and lng.");
+    }
+    
+    if( input.location.address && (input.location.lat || input.location.lng))
+    {
+       this.throw(400, "Location must have one: address, or lat + lng.");
+    }
+    
+    var gpsLocation;
+    if(input.location.lat && input.location.lng)
+    {
+        gpsLocation = [ input.location.lat, input.location.lng ];
+    }
+    else // input.location.address
+    {
+        gpsLocation = yield Gps.geocodeAddress(input.location.address);
+    }
+    
+    // Get distance (in KM) and convert to degrees (1km = 111.12 degrees)
+    var maxDistance = input.location.radius / 111.12;
+    
+    
+    query.location =  {
+                        $near: gpsLocation,
+                        $maxDistance: maxDistance
+                      }
+  }
+
   var deals = yield Deal.find(query);
   
   // Return deals
