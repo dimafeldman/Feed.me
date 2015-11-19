@@ -16,10 +16,12 @@ var app = koa();
 app.use(error());
 app.use(logger());
 app.use(bodyParser());
-app.use(serve('./public'));
 
 // Define routes
 router(app);
+
+// Serve public files if no routes match
+app.use(serve('./public'));
 
 // Define configurable port
 var port = process.env.PORT || 3000;
