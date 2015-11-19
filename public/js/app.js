@@ -113,14 +113,17 @@ app.controller('AppCtrl', function($scope) {
 app.controller('gMap', function($scope, $http, $mdDialog, uiGmapGoogleMapApi) {
     var dealMarkers = [];
 
+    $('.angular-google-map-container').css('height', window.innerHeight - 150);
+
     $http.get('/deals')
         .success(function(data) {
             _.each(data.deals, function(deal, i) {
                 dealMarkers.push({
                     id: deal._id,
                     latitude: deal.location[0],
-                    longitude: deal.location[1]
-                    //latitude: 32.066838, longitude: 34.787784
+                    longitude: deal.location[1],
+                    icon: '/img/foodicon.png',
+                    latitude: 32.066838, longitude: 34.787784
                 })
             });
 
