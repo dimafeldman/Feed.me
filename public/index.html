@@ -29,8 +29,24 @@
     </md-sidenav>
     <div layout="column" flex id="content">
         <md-content layout="column" flex class="md-padding">
-            This Starter Application consists of a Toolbar, SideNav (with two buttons), and Content area.
-            <p>This is the content area! </p>
+
+            <div ng-controller="AppCtrl" ng-cloak>
+                <md-content>
+                    <md-list>
+                        <md-subheader class="md-no-sticky">Feeders list</md-subheader>
+                        <md-list-item class="md-3-line md-long-text" ng-repeat="provider in providers">
+                            <img ng-src="{{provider.image}}" class="md-avatar" alt="{{provider.name}}"/>
+
+                            <div class="md-list-item-text">
+                                <h3>{{ provider.name }}</h3>
+
+                                <p>{{ provider.description }}</p>
+                            </div>
+                        </md-list-item>
+                    </md-list>
+                </md-content>
+            </div>
+
         </md-content>
     </div>
 </div>
