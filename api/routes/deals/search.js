@@ -38,19 +38,24 @@ module.exports = function *()
   // Validate input
   if ( ! hasMinFields )
   {
-    this.throw(400, "Please provide one of the fields: " + one_required);
+    this.throw(400, "Please provide at least one of the fields: " + one_required);
   }  
   
   
-  var deals = yield Deal.find(
+  var query = {};
+  if( input.text )
   {
-    $or:
-    [
-      {"title" : {$regex: '.*'+input.text+'.*', $options: 'i'}},
-      {"description" : {$regex: '.*'+input.text+'.*', $options: 'i'}}
-    ],
-    "seller" : {$regex: '.*'+input.seller+'.*', $options: 'i'}
-  });
+    query.$or = [ {"title" : {$regex: '.*'+input.text+'.*', $options: 'i'}},
+                  {"description" : {$regex: '.*'+input.text+'.*', $options: 'i'}} ];
+  }
+  
+  if( input.seller )
+  {
+    query.seller = {$regex: '.*'+input.seller+'.*', $options: 'i'};
+  }
+
+
+  var deals = yield Deal.find(query);
   
   // Return deals
   this.body = { deals: deals };
