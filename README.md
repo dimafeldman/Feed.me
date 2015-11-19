@@ -188,15 +188,16 @@ A list of all Node.js API endpoints.
 ##### Request
 
 ```
+//mandatories: title, seller, quantity, address, price
 {
-    "title": "220g Hamburger", // mandatory
+    "title": "220g Hamburger",
     "description": "A really tasty hamburger for half the price.",
     "discount": "50%",
-    "seller": "Rak Basar", // mandatory
-    "price": "100₪", // mandatory
-    "quantity": 25, // mandatory
+    "seller": "Rak Basar", 
+    "price": "100₪", 
+    "quantity": 25,
     "image": "https://example.com/image.jpg",
-    "address": "2 Baruc St, Tel Aviv, Israel" // mandatory
+    "address": "2 Baruc St, Tel Aviv, Israel" 
 }
 ```
 
