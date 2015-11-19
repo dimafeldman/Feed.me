@@ -38,7 +38,14 @@ app.controller('layout', function($scope, $rootScope, $location, page, utils, $t
 app.controller('add', function($scope, $http, $location, $mdDialog) {
     
     // Default deal
-    $scope.deal = {'seller': 'test'};
+    $scope.deal = {'seller': 'PizzaHutCorp.',
+                   'title': 'Pizza', 
+                   'image': '../img/pizza.jpg',
+                   'description': 'Very tasty pizza with random toppings',
+                   'price': '3$',
+                   'address': 'Tel Aviv, Namir 20',
+                   'quantity': '20',                                                                                               
+                   'when' : '23:00'};
     
     // Save deal
     $scope.saveDeal = function()
