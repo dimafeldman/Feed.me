@@ -13,6 +13,7 @@ var schema = new db.Schema(
     address:        String,
     quantity:       Number,
     interested:     Number,
+    when:           Date,
     created:        Date,
     location:
     {

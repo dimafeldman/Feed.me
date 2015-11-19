@@ -1,6 +1,7 @@
 // Require deal model
 var Deal = require('../../models/deal');
 var Gps = require('../../lib/gps');
+var Dates = require('../../lib/dates');
 
 // Generator-compatible request library
 var request = require('co-request');
@@ -11,7 +12,7 @@ module.exports = function *()
   var input = this.request.body;
   
   // Required fields
-  var required = [ 'title', 'price', 'quantity', 'address', 'seller'];
+  var required = [ 'title', 'price', 'quantity', 'address', 'seller', 'when'];
   
   // Traverse required fields
   for ( var i in required )
@@ -28,6 +29,8 @@ module.exports = function *()
   
   // Geocode the address via the Google Maps Geocoding API
   var location = yield Gps.geocodeAddress(input.address);
+  var whenDate = Dates.getDateFromHour(input.when);
+
   
   // Create new deal model
   var deal = new Deal();
@@ -36,6 +39,7 @@ module.exports = function *()
   deal.interested = 0;
   deal.location = location;
   deal.title = input.title;
+  deal.when = whenDate;
   deal.seller = input.seller;
   deal.price = input.price;
   deal.image = input.image;

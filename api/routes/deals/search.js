@@ -13,6 +13,7 @@ input:
 // Require deal model
 var Deal = require('../../models/deal');
 var Gps = require('../../lib/gps');
+var Dates = require('../../lib/dates');
 
 module.exports = function *()
 {
@@ -91,34 +92,22 @@ module.exports = function *()
                         $maxDistance: maxDistance
                       }
   }
-
+  
+  
+  if( input.time_range )
+  {
+    if( input.time_range.length != 2)
+    {
+      this.throw(400, "Time range must have exactly two numbers.");
+    }
+    var minDate = Dates.getDateFromHour(input.time_range[0]);
+    var maxDate = Dates.getDateFromHour(input.time_range[1]);
+    query.when = { $gte: minDate,
+                $lt: maxDate};
+  }
+  
   var deals = yield Deal.find(query);
   
   // Return deals
   this.body = { deals: deals };
 };
-
-
-/*
-
-location: 
-    {
-      $near: location,
-      $maxDistance: maxDistance
-    }
-  // Validate location
-  if ( ! input.location || ! input.location.lng || ! input.location.lng )
-  {
-    this.throw(400, "Please provide a location object with latitude and longitude values.");   
-  }
-  
-  // Get distance (in KM) and convert to degrees (1km = 111.12 degrees)
-  var maxDistance = input.radius / 111.12;
-
-  // Prepare coordinates array
-  var location = [ input.location.lat, input.location.lng ];
-  
-  // Get deals within max distance
-
-
-*/
