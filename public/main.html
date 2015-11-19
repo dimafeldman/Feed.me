@@ -15,16 +15,21 @@
 				<md-subheader class="md-no-sticky">Feeders list</md-subheader>
 				<md-list-item class="md-3-line md-long-text" ng-repeat="deal in deals">
 					<img ng-src="{{deal.image}}" class="md-avatar" alt="{{deal.title}}"/>
-
-					<div>{{deal}}</div>
+							
+					<!--<div>{{deal}}</div> -->
 					
-					<!--
+					
+					
 					<div class="md-list-item-text">
-						<h3>{{ provider.name }}</h3>
+						 <h3>{{ deal.title }}</h3>
+					<h4>{{ deal.description }}</h4>
+					<p>{{ deal.location }}</p>
+					<p>Price: {{ deal.price}} You save:{{deal.discount}}!</p>
+					<p> {{deal.quantity}} available</p>
+					 <p><img ng-src="./img/user.png"  width="10px" height="10px"/> {{ deal.subscribers.length }} interested</p>
 
-						<p>{{ provider.description }}</p>
 					</div>
-					-->
+				
 					
 				</md-list-item>
 			</md-list>

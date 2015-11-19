@@ -23,7 +23,7 @@ app.newDeal = function() {
 	return {
 		title: 'שאריות של פלאפל שלומי',
 		price: '10',
-		image: '/img/deal1.jpg',
+		image: '/img/shchuna-falafel-closeup.jpg',
 		location: 'תל אביב, המסגר 35',
 		discount: '80%',
 		description: 'פלאפל טעים טעים',
@@ -43,7 +43,19 @@ app.controller('layout', function ($scope, $rootScope, $location, page, utils, $
 app.controller('main', function($scope, $http) {
 	console.log('main');
 	
-	$scope.deals = [app.newDeal()]; 
+	$scope.deals = [app.newDeal(), 
+					{title: 'פיצה פצץ',
+					price: '0',
+					image: '/img/pizza.jpg',
+					location: 'תל אביב, ,תושיה 2',
+					discount: '100%',
+					description: 'שאריות האקתון',
+					quantity: 10,
+					created: Date.now(),
+					// new
+					subscribers: [app.newSubscriber('1', 'Barak')]}
+					
+					]; 
 	
 	/*
 	$http.get('/getData')
