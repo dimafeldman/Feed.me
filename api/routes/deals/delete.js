@@ -12,14 +12,9 @@ module.exports = function *()
     this.throw(400, "Please provide a deal ID.");
   }
   
-  // Find deal by ID
-  var deal = yield Deal.findById(id);
+  // Delete deal by ID
+  yield Deal.remove({"_id": id});
   
-  if ( ! deal._id )
-  {
-    this.throw(400, "An invalid deal ID was provided.");
-  }
-  
-  // Return deal
-  this.body = { deal: deal };
+  // Return success
+  this.body = { success: true };
 };
