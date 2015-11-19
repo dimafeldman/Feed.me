@@ -3,8 +3,6 @@ var app  = angular.module('myApp', [
     'ngCookies',
     'ngMaterial',
     'ngAnimate',
-    'satellizer',
-    'ngStorage',
     'uiGmapgoogle-maps'
 ]);
 app.name = 'FeedMe';
