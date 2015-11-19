@@ -4,7 +4,7 @@
             <div ng-controller="gMap" ng-cloak>
                 <md-content>
                     <ui-gmap-google-map center='map.center' zoom='map.zoom'>
-                        <!--<ui-gmap-marker
+                        <ui-gmap-marker
                                 idKey='selfMarker.id'
                                 coords='selfMarker.coords'
                                 click=''
@@ -13,7 +13,6 @@
                                 control=''
                                 >
                         </ui-gmap-marker>
-                        -->
                         <ui-gmap-markers models="dealMarkers" coords="'self'" icon="'icon'" click="openDealModal(id)"></ui-gmap-markers>
                     </ui-gmap-google-map>
                 </md-content>

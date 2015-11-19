@@ -118,9 +118,9 @@ app.controller('gMap', function($scope, $http, $mdDialog, uiGmapGoogleMapApi) {
             _.each(data.deals, function(deal, i) {
                 dealMarkers.push({
                     id: deal._id,
-                    //latitude: deal.location[0],
-                    //longitude: deal.location[1],
-                    latitude: 32.066838, longitude: 34.787784
+                    latitude: deal.location[0],
+                    longitude: deal.location[1]
+                    //latitude: 32.066838, longitude: 34.787784
                 })
             });
 
@@ -136,9 +136,6 @@ app.controller('gMap', function($scope, $http, $mdDialog, uiGmapGoogleMapApi) {
                             },
                             zoom: 16
                         };
-
-                        console.log($scope.map.markerSelf);
-                        console.log(dealMarkers[0]);
 
                         $scope.selfMarker = {
                             id: 0,
