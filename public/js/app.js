@@ -61,14 +61,21 @@ app.controller('add', function($scope, $http, $location, $mdDialog) {
 });
 
 
-app.controller('main', function($scope, $http, $mdDialog) {
+app.controller('main', function($scope, $http, $route, $mdDialog) {
     console.log('main');
 
     $http.get('/deals')
         .success(function(data) {
-
             $scope.deals = data.deals;
         });
+        
+    $scope.deleteDeal = function(deal)
+    {
+        $http.delete('/deals/' + deal._id)
+        .success(function(data) {
+           $route.reload();
+        });     
+    }
 
     $scope.openDealModal = function(dealId) {
 
