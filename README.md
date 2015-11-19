@@ -39,6 +39,7 @@ A list of all Node.js API endpoints.
       "created": "2015-11-19T15:42:02.152Z",
       "price": "100₪",
       "quantity": 25,
+      "interested": 10,
       "title": "220g Hamburger",
       "address": "2 Baruc St, Tel Aviv, Israel",
       "location": [
@@ -65,6 +66,7 @@ A list of all Node.js API endpoints.
     "created": "2015-11-19T15:42:02.152Z",
     "price": "100₪",
     "quantity": 25,
+    "interested": 10,
     "title": "220g Hamburger",
     "address": "2 Baruc St, Tel Aviv, Israel",
     "location": [
@@ -114,6 +116,7 @@ A list of all Node.js API endpoints.
       "created": "2015-11-19T15:42:02.152Z",
       "price": "100₪",
       "quantity": 25,
+      "interested": 10,
       "title": "220g Hamburger",
       "address": "2 Baruc St, Tel Aviv, Israel",
       "location": [
@@ -154,6 +157,7 @@ A list of all Node.js API endpoints.
       "created": "2015-11-19T15:42:02.152Z",
       "price": "100₪",
       "quantity": 25,
+      "interested": 10,
       "title": "220g Hamburger",
       "address": "2 Baruc St, Tel Aviv, Israel",
       "location": [
@@ -191,6 +195,5 @@ A list of all Node.js API endpoints.
 
 ### Future Endpoints
 
-1. Nearby Deals
-2. Login/Register?
-3. Interested in Deals
+1. Login/Register?
+2. Interested in Deals
