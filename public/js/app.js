@@ -8,6 +8,10 @@ var app = angular.module('myApp', [
 ]);
 app.name = 'FeedMe';
 
+require('/js/routes.js').set(app);
+
+app.data = {};
+
 app.controller('layout', function ($scope, $rootScope, $location, page, utils, $timeout, $mdSidenav, $mdUtil, $log, $mdDialog) {
 	console.log('LayoutCtrl');
 

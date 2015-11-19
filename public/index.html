@@ -27,11 +27,10 @@
         <md-button class="md-accent">Button 1</md-button>
         <md-button class="md-accent">Button 2</md-button>
     </md-sidenav>
-    <div layout="column" flex id="content">
-        <md-content layout="column" flex class="md-padding">
-            This Starter Application consists of a Toolbar, SideNav (with two buttons), and Content area.
-            <p>This is the content area! </p>
-        </md-content>
+    <div layout="column" flex id="content" class="container">
+        <div class="view-container">
+            <div ng-view autoscroll class="view-frame" style="padding: 0 10px;"></div>
+        </div>
     </div>
 </div>
 <!-- Angular Material Dependencies -->
