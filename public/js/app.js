@@ -1,11 +1,10 @@
 var app = angular.module('myApp', [
   	'ngRoute',
 	'ngCookies',
-	'myAppServices',
 	'ngMaterial',
 	'ngAnimate',
 	'satellizer',
-	'ngStorage',
+	'ngStorage'
 ]);
 app.name = 'FeedMe';
 
