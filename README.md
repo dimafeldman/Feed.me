@@ -151,12 +151,14 @@ A list of all Node.js API endpoints.
 ```
 {
     // minimum one parameter
+    // text: title or description
+    // location: choose either lat+lng or address
     "location": {"radius" : 10, // radius in KM
-                 "address" : "6 Baruc St, Tel Aviv, Israel", // choose either lat+lng or address
+                 "address" : "6 Baruc St, Tel Aviv, Israel", 
                  "lat": 34.3984,
                  "lng": 36.34198,         
-                 }
-    "text": "Hamburger", // title and description
+                 },
+    "text": "Hamburger", 
     "seller": "Moses",
     "time_range" : ["22:42",
                     "23:42"]
