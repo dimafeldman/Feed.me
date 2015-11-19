@@ -88,6 +88,16 @@ A list of all Node.js API endpoints.
 }
 ```
 
+#### GET /deals/:id/interested
+
+##### Response
+
+```
+{
+  "success": true
+}
+```
+
 #### POST /deals/nearby
 
 ##### Request
