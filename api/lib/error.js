@@ -17,7 +17,10 @@ module.exports = function error()
 			
 			// Set response status & body
 			this.status = err.status;
-			this.body = {code: err.status, message: err.message, stack: err.stack};
+			this.body = {code: err.status, message: err.message};
+			
+			// Log it
+			console.log(err);
 		
 			// Emit app-wide error
 			this.app.emit('error', err, this);
