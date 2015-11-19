@@ -113,6 +113,42 @@ A list of all Node.js API endpoints.
 }
 ```
 
+
+#### POST /deals/search
+
+##### Request
+
+```
+{
+    "location":
+    {
+        "lat": 34.3984,
+        "lng": 36.34198,
+    },
+    "query": "Hamburger"
+}
+```
+
+##### Response
+
+```
+{
+  "deals": [
+    {
+      "_id": "564dedca8946b04417127d07",
+      "description": "A really tasty hamburger for half the price.",
+      "discount": "50%",
+      "image": "https://example.com/image.jpg",
+      "created": "2015-11-19T15:42:02.152Z",
+      "price": "100₪",
+      "quantity": 25,
+      "title": "220g Hamburger",
+      "address": "2 Baruc St, Tel Aviv, Israel"
+    }
+  ]
+}
+```
+
 #### PUT /deals
 
 ##### Request
