@@ -7,7 +7,7 @@ module.exports = function *()
   var input = this.request.body;
   
   // Required fields
-  var required = [ 'title', 'price', 'quantity' ];
+  var required = [ 'title', 'price', 'quantity', 'location' ];
   
   // Traverse required fields
   for ( var i in required )
@@ -22,13 +22,18 @@ module.exports = function *()
     }
   }
   
+  // Location validation
+  if ( ! input['location']['lat'] || ! input['location']['lng'] )
+  {
+    this.throw(400, "Please provide a location object with latitude and longitude values.");   
+  }
+  
   // Create new deal model
   var deal = new Deal();
   
   // Set properties
   deal.title = input.title;
   deal.created = new Date();
-  deal.updated_on = new Date();
   deal.description = input.description;
   
   // Save
