@@ -109,12 +109,17 @@ app.controller('AppCtrl', function($scope) {
 });
 
 app.controller('gMap', function($scope, $http, uiGmapGoogleMapApi) {
+    $scope.dealMarkers = [];
 
-    /*$http.get('/getData')
+    $http.get('/deals')
      .success(function(data) {
-     console.log('browse: success, app:', data);
+        _.each(data.deals, function(deal) {
+            $scope.dealMarkers.push({
+                coords: {latitude: deal.location[0], longitude: deal.location[1]}
+            })
+        });
      }
-     );*/
+    );
 
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(position) {
