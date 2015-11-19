@@ -29,22 +29,6 @@ app.newSubscriber = function(userId, username) {
     }
 };
 
-app.newDeal = function() {
-    return {
-        title: 'שאריות של פלאפל שלומי',
-        price: '10',
-        image: '/img/deal1.jpg',
-        location: 'תל אביב, המסגר 35',
-        discount: '80%',
-        description: 'פלאפל טעים טעים',
-        quantity: 10,
-        created: Date.now(),
-        // new
-        id: '1',
-        subscribers: [app.newSubscriber('1', 'Shlomi'), app.newSubscriber('2', 'Kobi')],
-    }
-};
-
 app.controller('layout', function($scope, $rootScope, $location, page, utils, $timeout, $mdSidenav, $mdUtil, $log, $mdDialog) {
     console.log('LayoutCtrl');
 
@@ -54,15 +38,20 @@ app.controller('layout', function($scope, $rootScope, $location, page, utils, $t
 app.controller('main', function($scope, $http, $mdDialog) {
     console.log('main');
 
-    $scope.deals = [app.newDeal(), app.newDeal()];
+    $http.get('/deals')
+        .success(function(data) {
+
+            $scope.deals = data.deals;
+        });
 
     $scope.openDealModal = function(dealId) {
+
         $mdDialog.show({
             controller: 'dealModal',
             templateUrl: './deal-modal.html',
             locals: {
                 deal: $scope.deals.filter(function(x) {
-                    return x.id == dealId
+                    return x._id == dealId
                 })[0]
             },
             parent: angular.element(document.body),
@@ -121,16 +110,17 @@ app.controller('AppCtrl', function($scope) {
     ];
 });
 
-app.controller('gMap', function($scope, $http, uiGmapGoogleMapApi) {
+app.controller('gMap', function($scope, $http, $mdDialog, uiGmapGoogleMapApi) {
     var dealMarkers = [];
 
     $http.get('/deals')
         .success(function(data) {
             _.each(data.deals, function(deal, i) {
                 dealMarkers.push({
-                    id: i,
-                    latitude: deal.location[0],
-                    longitude: deal.location[1]
+                    id: deal._id,
+                    //latitude: deal.location[0],
+                    //longitude: deal.location[1],
+                    latitude: 32.066838, longitude: 34.787784
                 })
             });
 
