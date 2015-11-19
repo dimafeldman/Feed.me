@@ -33,10 +33,17 @@ module.exports = function *()
   
   // Set properties
   deal.title = input.title;
-  deal.created = new Date();
+  deal.price = input.price;
+  deal.image = input.image;
+  deal.location = input.location;
+  deal.discount = input.discount;
+  deal.quantity = input.quantity;
   deal.description = input.description;
   
-  // Save
+  // Set creation date
+  deal.created = new Date();
+  
+  // Save deal
   yield deal.save();
   
   // Return success

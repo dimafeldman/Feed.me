@@ -1,0 +1,19 @@
+
+<div class="dialog-overlay op-dark md-padding" layout="row" layout-align="center center">
+	<md-dialog>
+		<form ng-submit="submit()">
+			<md-dialog-content>
+				<div>{{ deal }}</div>
+			</md-dialog-content>
+			<md-toolbar>
+				<div class="md-toolbar-tools">
+					<h2>Deal Details:</h2>
+					<span flex></span>
+					<md-button class="md-icon-button" style="background-color: rgb(33, 150, 243);" ng-click="cancel()">
+						<div class="fg-white icon-cancel-2 icon-1x" aria-label="Close dialog">X</div>
+					</md-button>
+				</div>
+			</md-toolbar>
+		</form>
+	</md-dialog>
+</div>

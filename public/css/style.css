@@ -1,0 +1,12 @@
+md-dialog {
+    opacity: 0;
+    min-width: 240px;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+md-dialog md-dialog-content { overflow: hidden; }
+
+.angular-google-map-container {
+    height: 400px;
+}

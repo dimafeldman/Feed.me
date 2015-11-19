@@ -2,18 +2,17 @@
 	Content
 </md-content>
 
-<div layout-margin layout="row" layout-align="space-around center" layout-wrap>
-	kdjahdkjhasdkjh
-</div>
-
-
 <md-content layout="column" flex class="md-padding">
 
 	<div ng-cloak>
 		<md-content>
 			<md-list>
 				<md-subheader class="md-no-sticky">Feeders list</md-subheader>
-				<md-list-item class="md-3-line md-long-text" ng-repeat="deal in deals">
+				<md-list-item class="md-3-line md-long-text" ng-repeat="deal in deals" layout="column">
+					<div>
+						<md-button class="md-raised" ng-click="openDealModal(deal.id)">Open modal</md-button>
+					</div>
+
 					<img ng-src="{{deal.image}}" class="md-avatar" alt="{{deal.title}}"/>
 							
 					<!--<div>{{deal}}</div> -->
@@ -33,6 +32,21 @@
 					
 				</md-list-item>
 			</md-list>
+		</md-content>
+	</div>
+	<div ng-controller="gMap" ng-cloak>
+		<md-content>
+			<ui-gmap-google-map center='map.center' zoom='map.zoom'>
+				<ui-gmap-marker
+						idKey='selfMarker.id'
+						coords='selfMarker.coords'
+						click=''
+						options=''
+						events=''
+						control=''
+						>
+				</ui-gmap-marker>
+			</ui-gmap-google-map>
 		</md-content>
 	</div>
 
