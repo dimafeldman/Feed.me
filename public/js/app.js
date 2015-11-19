@@ -30,6 +30,7 @@ app.newDeal = function() {
 		quantity: 10,
 		created: Date.now(),
 		// new
+		id: '1',
 		subscribers: [app.newSubscriber('1', 'Shlomi'), app.newSubscriber('2', 'Kobi')],
 	}
 } 
@@ -40,10 +41,20 @@ app.controller('layout', function ($scope, $rootScope, $location, page, utils, $
 
 });
 
-app.controller('main', function($scope, $http) {
+app.controller('main', function($scope, $http, $mdDialog) {
 	console.log('main');
 	
-	$scope.deals = [app.newDeal()]; 
+	$scope.deals = [app.newDeal(), app.newDeal()];
+	
+	$scope.openDealModal = function(dealId){
+		$mdDialog.show({
+				controller: 'dealModal',
+				templateUrl: './deal-modal.html',
+				locals: { deal: $scope.deals.filter(function(x){return x.id == dealId})[0] },
+				parent: angular.element(document.body),
+				clickOutsideToClose: true
+			})
+	}
 	
 	/*
 	$http.get('/getData')
@@ -52,6 +63,18 @@ app.controller('main', function($scope, $http) {
 		}
 	);
 	*/
+});
+
+app.controller('dealModal', function ($scope, $mdDialog, $http, $route, $location, deal) {
+	$scope.deal = deal;
+
+	$scope.hide = function () {
+		$mdDialog.hide();
+	};
+	$scope.cancel = function () {
+		$mdDialog.cancel();
+	};
+	
 });
 
 app.controller('AppCtrl', function($scope) {
