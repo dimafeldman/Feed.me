@@ -1,14 +1,17 @@
 // Dependencies
-var route = require('koa-route');
+var router = require('koa-router')();
 
 // Route definitions
-module.exports = function router(app)
+module.exports = function (app)
 {
   // Set TODO routes
-  app.use(route.get('/todo/new', require('./routes/add')));
-  app.use(route.get('/todo/:id', require('./routes/show')));
-  app.use(route.get('/todo/delete/:id', require('./routes/remove')));
-  app.use(route.get('/todo/edit/:id', require('./routes/edit')));
-  app.use(route.post('/todo/create', require('./routes/create')));
-  app.use(route.post('/todo/update', require('./routes/update')));
+  router.get('/todo/new', require('./routes/add'));
+  router.get('/todo/:id', require('./routes/show'));
+  router.get('/todo/delete/:id', require('./routes/remove'));
+  router.get('/todo/edit/:id', require('./routes/edit'));
+  router.post('/todo/create', require('./routes/create'));
+  router.post('/todo/update', require('./routes/update'));
+  
+  // Use them  
+  app.use(router.routes()).use(router.allowedMethods());
 };
