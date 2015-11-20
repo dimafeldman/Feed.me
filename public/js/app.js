@@ -158,6 +158,7 @@ app.controller('main', function($scope, $http, $route, $mdDialog) {
 
     $scope.feedMe = function(deal)
     {
+        deal.interested++;
         $mdDialog.show({
             templateUrl: './feedme-modal.html',
             controller: 'dealModal',
@@ -171,20 +172,24 @@ app.controller('main', function($scope, $http, $route, $mdDialog) {
     //$scope.openDealModal('1');
 });
 
-app.controller('dealModal', function($scope, $mdDialog, $http, $route, $location, deal) {
+app.controller('dealModal', function($scope, $mdDialog, $http, $route, $location, $timeout, deal) {
     $scope.deal = deal;
     
     
     $scope.feedMe = function(deal)
     {
-        $mdDialog.show({
-            templateUrl: './feedme-modal.html',
-            controller: 'dealModal',
-            parent: angular.element(document.body),
-            locals: {
-            deal: deal },
-            clickOutsideToClose: true
-        });
+        deal.interested++;
+        
+        $timeout(function(){
+            $mdDialog.show({
+                templateUrl: './feedme-modal.html',
+                controller: 'dealModal',
+                parent: angular.element(document.body),
+                locals: {
+                deal: deal },
+                clickOutsideToClose: true
+            });
+        }, 1000)
     }
     
     $scope.navigate = function(deal)
