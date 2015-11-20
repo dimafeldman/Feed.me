@@ -17,6 +17,10 @@ md-dialog md-dialog-content { overflow: hidden; }
 
 .md-list-item-text * {line-height: 100% !important;}
 
+.angular-google-map-container
+{
+    height: 85vh;
+}
 
 .logo {
     text-indent: -9999px;
