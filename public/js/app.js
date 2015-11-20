@@ -166,7 +166,7 @@ app.controller('dealModal', function($scope, $mdDialog, $http, $route, $location
     
     $scope.navigate = function(deal)
     {
-        window.location = "waze://?q=" + encodeURIComponent(deal.address);
+        window.location = "http://maps.google.com/?q=" + encodeURIComponent(deal.address);
     }
 
     $scope.openDealModal = function(dealId) {
