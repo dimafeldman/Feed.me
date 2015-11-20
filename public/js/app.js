@@ -1,3 +1,6 @@
+var modelGetter = require('/js/model-getter');
+
+
 var app  = angular.module('myApp', [
     'ngRoute',
     'ngCookies',
@@ -36,34 +39,27 @@ app.controller('layout', function($scope, $rootScope, $location, page, utils, $t
 app.controller('add', function($scope, $http, $location, $mdDialog) {
     
     // Default deal
-    $scope.deal = {'seller': 'PizzaHutCorp.',
-                   'title': 'Pizza', 
-                   'image': '../img/pizza.jpg',
-                   'description': 'Very tasty pizza with random toppings',
-                   'price': '3$',
-                   'address': 'Tel Aviv, Namir 20',
-                   'quantity': '20',                                                                                               
-                   'when' : '23:00'};
+    $scope.deal = modelGetter.get_default_deal();
     
     // Save deal
     $scope.saveDeal = function()
     {
         $scope.loading = true;
         
-        $http.put('/deals', $scope.deal)
-        .success(function(res) 
-        {
-            $scope.loading = false;
-        
-            alert("Deal saved successfully!");
-            $location.path('/'); 
-        })
-        .error(function(err)
-        {
-            alert(err.message);
+        modelGetter.add_deal($http, $scope.deal, 
+            function(res) 
+            {
+                $scope.loading = false;
             
-            $scope.loading = false;        
-        });
+                alert("Deal saved successfully!");
+                $location.path('/'); 
+            },
+            function(err)
+            {
+                alert(err.message);
+                
+                $scope.loading = false;        
+            });
     }
 });
 
@@ -71,17 +67,18 @@ app.controller('add', function($scope, $http, $location, $mdDialog) {
 app.controller('main', function($scope, $http, $route, $mdDialog) {
     console.log('main');
 
-    $http.get('/deals')
-        .success(function(data) {
-            $scope.deals = data.deals;
-        });
-        
+
+    modelGetter.get_deals($http,
+        function(data) {
+                $scope.deals = data.deals;
+            });
+    
     $scope.deleteDeal = function(deal)
     {
-        $http.delete('/deals/' + deal._id)
-        .success(function(data) {
-           $route.reload();
-        });     
+        modelGetter.delete_deal($http, deal,
+            function(data) {
+              $route.reload();
+            });
     }
 
     $scope.openDealModal = function(dealId) {
@@ -167,8 +164,9 @@ app.controller('gMap', function($scope, $http, $mdDialog, uiGmapGoogleMapApi) {
         }
     };
 
-    $http.get('/deals')
-        .success(function(data) {
+
+    modelGetter.get_deals($http, 
+        function(data) {
             _.each(data.deals, function(deal, i) {
                 dealMarkers.push({
                     id: deal._id,
