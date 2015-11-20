@@ -72,7 +72,7 @@ app.controller('add', function($scope, $http, $location, $mdDialog) {
 });
 
 
-app.controller('main', function($scope, $http, $route, $mdDialog) {
+app.controller('main', function($scope, $http, $route, $mdDialog, $timeout) {
     console.log('main');
 
     modelGetter.get_deals($http,
@@ -159,14 +159,16 @@ app.controller('main', function($scope, $http, $route, $mdDialog) {
     $scope.feedMe = function(deal)
     {
         deal.interested++;
-        $mdDialog.show({
-            templateUrl: './feedme-modal.html',
-            controller: 'dealModal',
-            parent: angular.element(document.body),
-            locals: {
-            deal: deal },
-            clickOutsideToClose: true
-        });
+        $timeout(function(){        
+            $mdDialog.show({
+                templateUrl: './feedme-modal.html',
+                controller: 'dealModal',
+                parent: angular.element(document.body),
+                locals: {
+                deal: deal },
+                clickOutsideToClose: true
+            });
+        }, 1000);
     }
     
     //$scope.openDealModal('1');
