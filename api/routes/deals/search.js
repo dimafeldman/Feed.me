@@ -15,6 +15,9 @@ var Deal = require('../../models/deal');
 var Gps = require('../../lib/gps');
 var Dates = require('../../lib/dates');
 
+// Require app config
+var config = require('../../../config');
+
 module.exports = function *()
 {
   // Parse input from request body
@@ -60,7 +63,7 @@ module.exports = function *()
   {
     if( ! input.location.radius)
     {
-       this.throw(400, "Location must have radius.");
+       input.location.radius= config.deals.search.default_radius;
     }
     
     if( ! input.location.address && (! input.location.lat || ! input.location.lng))

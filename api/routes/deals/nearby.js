@@ -1,9 +1,6 @@
 // Require deal model
 var Deal = require('../../models/deal');
 
-// Require app config
-var config = require('../../../config');
-
 module.exports = function *()
 {
   // Parse input from request body
