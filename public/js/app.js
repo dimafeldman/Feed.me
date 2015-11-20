@@ -161,6 +161,11 @@ app.controller('dealModal', function($scope, $mdDialog, $http, $route, $location
             clickOutsideToClose: true
         });
     }
+    
+    $scope.navigate = function(deal)
+    {
+        window.location = "waze://?q=" + encodeURIComponent(deal.address);
+    }
 
     $scope.openDealModal = function(dealId) {
         $mdDialog.show({
