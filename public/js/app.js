@@ -76,13 +76,57 @@ app.controller('main', function($scope, $http, $route, $mdDialog) {
             $scope.deals = data.deals;
         });
         
-    $scope.deleteDeal = function(deal)
-    {
+    $scope.deleteDeal = function(deal) {
         $http.delete('/deals/' + deal._id)
         .success(function(data) {
            $route.reload();
         });     
-    }
+    };
+
+    $scope.filter = {
+        timerange: {
+            0: '00:00',
+            1: '01:00',
+            2: '02:00',
+            3: '03:00',
+            4: '04:00',
+            5: '05:00',
+            6: '06:00',
+            7: '07:00',
+            8: '08:00',
+            9: '09:00',
+            10: '10:00',
+            11: '11:00',
+            12: '12:00',
+            13: '13:00',
+            14: '14:00',
+            15: '15:00',
+            16: '16:00',
+            17: '17:00',
+            18: '18:00',
+            19: '19:00',
+            20: '20:00',
+            21: '21:00',
+            22: '22:00',
+            23: '23:00',
+            24: '24:00'
+        }
+    };
+
+    $scope.doFilter = function() {
+        $http.post('/deals/search', {
+            location: {
+                address: $scope.filter.where,
+                radius: 3
+            },
+            text: $scope.filter.what,
+            time_range: [$scope.filter.when, ($scope.filter.when < 24) ? $scope.filter.when + 1 : 0]
+        })
+            .success(function(data) {
+                $scope.deals = data.deals;
+            }
+        );
+    };
 
     $scope.openDealModal = function(dealId) {
 
@@ -133,9 +177,45 @@ app.controller('search', function($scope, $mdDialog, $http) {
 });
 
 app.controller('gMap', function($scope, $http, $mdDialog, uiGmapGoogleMapApi) {
-    var dealMarkers = [];
 
     $('.angular-google-map-container').css('height', window.innerHeight - 150);
+
+    var showOnMap = function(deals) {
+        var dealMarkers = [];
+
+        _.each(deals, function(deal, i) {
+            dealMarkers.push({
+                id: deal._id,
+                latitude: deal.location[0],
+                longitude: deal.location[1],
+                icon: '/img/foodicon.png',
+                options: {
+                    doRebuildAll: true
+                }
+            })
+        });
+
+        var centerMap    = {latitude: 32.066838, longitude: 34.787784};
+        var fakeLocation = {latitude: 32.066838, longitude: 34.787784};
+
+        uiGmapGoogleMapApi.then(function(maps) {
+
+            $scope.map = {
+                center: centerMap,
+                zoom: 16
+            };
+
+            $scope.selfMarker = {
+                id: 0,
+                coords: fakeLocation,
+                options: {draggable: true}
+            };
+
+            $scope.dealMarkers = dealMarkers;
+            //uiGmapGoogleMapApi.newModels($scope.dealMarkers);
+        });
+
+    };
 
     $scope.filter = {
         timerange: {
@@ -167,34 +247,24 @@ app.controller('gMap', function($scope, $http, $mdDialog, uiGmapGoogleMapApi) {
         }
     };
 
+    $scope.doFilter = function() {
+        $http.post('/deals/search', {
+                location: {
+                    address: $scope.filter.where,
+                    radius: 3
+                },
+                text: $scope.filter.what,
+                time_range: [$scope.filter.when, ($scope.filter.when < 24) ? $scope.filter.when + 1 : 0]
+            })
+            .success(function(data) {
+                showOnMap(data.deals);
+            }
+        );
+    };
+
     $http.get('/deals')
         .success(function(data) {
-            _.each(data.deals, function(deal, i) {
-                dealMarkers.push({
-                    id: deal._id,
-                    latitude: deal.location[0],
-                    longitude: deal.location[1],
-                    icon: '/img/foodicon.png'
-                })
-            });
-    
-            var centerMap = {latitude: 32.066838, longitude: 34.787784};
-            var fakeLocation = {latitude: 32.066838, longitude: 34.787784};
-            
-            uiGmapGoogleMapApi.then(function(maps) {
-                $scope.map        = {
-                    center: centerMap,
-                    zoom: 16
-                };
-
-                $scope.selfMarker = {
-                    id: 0,
-                    coords: fakeLocation,
-                    options: {draggable: true}
-                };
-
-                $scope.dealMarkers = dealMarkers;
-            });
+            showOnMap(data.deals);
         }
     );
 });

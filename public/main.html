@@ -6,23 +6,26 @@
                 <md-content>
                     <div layout="row">
                         <md-input-container>
-                            <label>Street Name</label>
-                            <input>
+                            <label>What</label>
+                            <input ng-model="filter.what">
                         </md-input-container>
                         <md-input-container>
-                            <label>Free text</label>
-                            <input>
+                            <label>Where</label>
+                            <input ng-model="filter.where">
                         </md-input-container>
                         <md-input-container>
-                            <label>Time</label>
-                            <md-select ng-model="filter.time">
+                            <label>When</label>
+                            <md-select ng-model="filter.when">
                                 <md-option ng-repeat="(key, value) in filter.timerange" value="{{key}}">
                                     {{value}}
                                 </md-option>
                             </md-select>
                         </md-input-container>
                         <md-input-container>
-                            <md-button class="md-raised" style="top: 15px;">Go</md-button>
+                            <md-button class="md-button" ng-click="doFilter()" style="top: 12px; outline: none;">
+                                <md-icon ng-click="doFilter()" md-svg-src="img/ic_search_black_24px.svg" style="outline: none;"></md-icon>
+                            </md-button>
+
                         </md-input-container>
                     </div>
                     <ui-gmap-google-map center='map.center' zoom='map.zoom'>
@@ -35,7 +38,7 @@
                                 control=''
                                 >
                         </ui-gmap-marker>
-                        <ui-gmap-markers models="dealMarkers" coords="'self'" icon="'icon'" click="openDealModal(id)"></ui-gmap-markers>
+                        <ui-gmap-markers models="dealMarkers" doRebuildAll="true" coords="'self'" icon="'icon'" options="'options'" click="openDealModal(id)"></ui-gmap-markers>
                     </ui-gmap-google-map>
                 </md-content>
             </div>
@@ -43,6 +46,31 @@
         <md-tab label="List">
             <div ng-cloak>
                 <md-content>
+                    <div layout="row">
+                        <md-input-container>
+                            <label>What</label>
+                            <input ng-model="filter.what">
+                        </md-input-container>
+                        <md-input-container>
+                            <label>Where</label>
+                            <input ng-model="filter.where">
+                        </md-input-container>
+                        <md-input-container>
+                            <label>When</label>
+                            <md-select ng-model="filter.when">
+                                <md-option ng-repeat="(key, value) in filter.timerange" value="{{key}}">
+                                    {{value}}
+                                </md-option>
+                            </md-select>
+                        </md-input-container>
+                        <md-input-container>
+                            <md-button class="md-button" ng-click="doFilter()" style="top: 12px; outline: none;">
+                                <md-icon ng-click="doFilter()" md-svg-src="img/ic_search_black_24px.svg"
+                                         style="outline: none;"></md-icon>
+                            </md-button>
+
+                        </md-input-container>
+                    </div>
                     <md-list>
                         <md-list-item class="md-3-line md-long-text" ng-repeat="deal in deals" style="position: relative;">
                             <div class="md-list-item-text" style="padding-left: 100px; padding-right: 100px;">
