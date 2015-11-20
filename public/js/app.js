@@ -162,8 +162,7 @@ app.controller('gMap', function($scope, $http, $mdDialog, uiGmapGoogleMapApi) {
                     id: deal._id,
                     latitude: deal.location[0],
                     longitude: deal.location[1],
-                    icon: '/img/foodicon.png',
-                    latitude: 32.066838, longitude: 34.787784
+                    icon: '/img/foodicon.png'
                 })
             });
 
