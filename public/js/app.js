@@ -164,19 +164,17 @@ app.controller('gMap', function($scope, $http, $mdDialog, uiGmapGoogleMapApi) {
                 })
             });
     
+            var centerMap = {latitude: 32.066838, longitude: 34.787784};
             var fakeLocation = {latitude: 32.066838, longitude: 34.787784};
             
             uiGmapGoogleMapApi.then(function(maps) {
                 $scope.map        = {
-                    //center: {latitude: position.coords.latitude, longitude: position.coords.longitude},
-                    center: fakeLocation,
-                    markerSelf: fakeLocation,
+                    center: centerMap,
                     zoom: 16
                 };
 
                 $scope.selfMarker = {
                     id: 0,
-                    //coords: {latitude: position.coords.latitude, longitude: position.coords.longitude},
                     coords: fakeLocation,
                     options: {draggable: true}
                 };
