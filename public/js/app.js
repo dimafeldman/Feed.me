@@ -114,13 +114,15 @@ app.controller('main', function($scope, $http, $route, $mdDialog) {
     };
 
     $scope.doFilter = function() {
+        var timeRange = [$scope.filter.when + ':00', (parseInt($scope.filter.when) < 24) ? parseInt($scope.filter.when) + 1 + ':00' : '1:00'];
+
         $http.post('/deals/search', {
             location: {
                 address: $scope.filter.where,
                 radius: 3
             },
             text: $scope.filter.what,
-            time_range: [$scope.filter.when, ($scope.filter.when < 24) ? $scope.filter.when + 1 : 0]
+            time_range: timeRange
         })
             .success(function(data) {
                 $scope.deals = data.deals;
@@ -247,13 +249,15 @@ app.controller('gMap', function($scope, $http, $mdDialog, uiGmapGoogleMapApi) {
     };
 
     $scope.doFilter = function() {
+        var timeRange = [$scope.filter.when + ':00', (parseInt($scope.filter.when) < 24) ? parseInt($scope.filter.when) + 1 + ':00' : '1:00'];
+
         $http.post('/deals/search', {
                 location: {
                     address: $scope.filter.where,
                     radius: 3
                 },
                 text: $scope.filter.what,
-                time_range: [$scope.filter.when, ($scope.filter.when < 24) ? $scope.filter.when + 1 : 0]
+                time_range: timeRange
             })
             .success(function(data) {
                 showOnMap(data.deals);
