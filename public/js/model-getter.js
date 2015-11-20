@@ -127,7 +127,7 @@ var deal_mocks = [
         "created": "2015-11-20T01:56:46.449Z",
         "description": "Get it while it's still fresh!",
         "quantity": 20,
-        "address": "2 Tushiya St, Tel Aviv Yafo",
+        "address": "2 Tushiya, Tel Aviv",
         "image": "../img/pizza.jpg",
         "price": "Free",
         "seller": "PizzaHutCorp.",
