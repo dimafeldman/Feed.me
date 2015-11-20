@@ -1,6 +1,6 @@
-<md-content layout="column" flex class="md-padding">
+<md-content layout="column" flex">
     <md-tabs md-dynamic-height md-border-bottom>
-        <md-tab label="Show by location">
+        <md-tab label="Map">
             <div ng-controller="gMap" ng-cloak>
                 <md-content>
                     <ui-gmap-google-map center='map.center' zoom='map.zoom'>
@@ -18,7 +18,7 @@
                 </md-content>
             </div>
         </md-tab>
-        <md-tab label="Show as a list">
+        <md-tab label="List">
             <div ng-cloak>
                 <md-content>
                     <md-list>
