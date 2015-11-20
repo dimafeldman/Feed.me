@@ -1,3 +1,6 @@
+var modelGetter = require('/js/model-getter');
+
+
 var app  = angular.module('myApp', [
     'ngRoute',
     'ngCookies',
@@ -50,20 +53,21 @@ app.controller('add', function($scope, $http, $location, $mdDialog) {
     {
         $scope.loading = true;
         
-        $http.put('/deals', $scope.deal)
-        .success(function(res) 
-        {
-            $scope.loading = false;
-        
-            alert("Deal saved successfully!");
-            $location.path('/'); 
-        })
-        .error(function(err)
-        {
-            alert(err.message);
+        modelGetter.add_deal($http, $scope.deal,
+            function(res) 
+            {
+                $scope.loading = false;
             
-            $scope.loading = false;        
-        });
+                alert("Deal saved successfully!");
+                $location.path('/'); 
+            },
+            function(err)
+            {
+                alert(err.message);
+                
+                $scope.loading = false;        
+            });
+        
     }
 });
 
@@ -71,16 +75,19 @@ app.controller('add', function($scope, $http, $location, $mdDialog) {
 app.controller('main', function($scope, $http, $route, $mdDialog) {
     console.log('main');
 
-    $http.get('/deals')
-        .success(function(data) {
+    modelGetter.get_deals($http,
+        function(data) {
             $scope.deals = data.deals;
-        });
-        
+        }
+    );
+    
+    
     $scope.deleteDeal = function(deal) {
-        $http.delete('/deals/' + deal._id)
-        .success(function(data) {
+        
+        modelGetter.delete_deal($http, deal,
+        function(data) {
            $route.reload();
-        });     
+        }); 
     };
 
     $scope.filter = {
@@ -116,15 +123,19 @@ app.controller('main', function($scope, $http, $route, $mdDialog) {
     $scope.doFilter = function() {
         var timeRange = [$scope.filter.when + ':00', (parseInt($scope.filter.when) < 24) ? parseInt($scope.filter.when) + 1 + ':00' : '1:00'];
 
-        $http.post('/deals/search', {
-            location: {
-                address: $scope.filter.where,
-                radius: 3
-            },
-            text: $scope.filter.what,
-            time_range: timeRange
-        })
-            .success(function(data) {
+        var query = { text: $scope.filter.what,
+                  time_range: timeRange
+            };
+        if($scope.filter.where)
+        {
+            query.location = { address: $scope.filter.where,
+                               radius: 3
+                     };
+        }
+        
+        modelGetter.search($http, query,
+            function(data) 
+            {
                 $scope.deals = data.deals;
             }
         );
@@ -268,26 +279,31 @@ app.controller('gMap', function($scope, $http, $mdDialog, uiGmapGoogleMapApi) {
 
     $scope.doFilter = function() {
         var timeRange = [$scope.filter.when + ':00', (parseInt($scope.filter.when) < 24) ? parseInt($scope.filter.when) + 1 + ':00' : '1:00'];
-
-        $http.post('/deals/search', {
-                location: {
-                    address: $scope.filter.where,
-                    radius: 3
-                },
-                text: $scope.filter.what,
-                time_range: timeRange
-            })
-            .success(function(data) {
+        
+        
+        var query = { text: $scope.filter.what,
+                      time_range: timeRange
+                 };
+        if($scope.filter.where)
+        {
+            query.location = { address: $scope.filter.where,
+                               radius: 3
+                     };
+        }
+        modelGetter.search($http, query,
+            function(data) {
                 showOnMap(data.deals);
             }
         );
     };
 
-    $http.get('/deals')
-        .success(function(data) {
-            showOnMap(data.deals);
-        }
+
+    modelGetter.get_deals($http,
+        function(data) {
+                showOnMap(data.deals);
+            }
     );
+    
 });
 
 app.controller('AppController', function($mdSidenav) {

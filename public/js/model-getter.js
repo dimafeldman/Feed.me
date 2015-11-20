@@ -1,6 +1,5 @@
 
-var config = true;
-var useMocks = config.use_mocks;
+var useMocks = true;
 
 exports.get_default_deal = function()
 { 
@@ -52,6 +51,18 @@ exports.delete_deal = function(http, deal, successCallback)
   else
   {
     successCallback();
+  }     
+}
+
+exports.search = function(http, query, successCallback)
+{ 
+  if( !useMocks )
+  {
+    http.post('/deals/search', query).success(successCallback);
+  }
+  else
+  {
+    successCallback({"deals" : search_mocks});
   }     
 }
 
@@ -130,3 +141,9 @@ var deal_mocks = [
         "__v": 0
       }
     ];
+    
+var search_results_filter = function (deal)
+                            {
+                              return deal.title.indexOf('Hamb') > -1 || deal.title.indexOf('Fal') > -1;
+                            }
+var search_mocks = deal_mocks.filter(search_results_filter);
