@@ -21,7 +21,9 @@
 					<div layout="column" layout-align="start start">
 						<span class="deal-title md-headline bg-white fg-black"> {{ deal.title }} </span>
 						<span class="deal-price md-title op-white fg-black">{{ deal.price }} </span>
-						<span class="deal-discount md-title op-white fg-black">Save: {{ deal.discount }} </span>
+						<span ng-if="deal.discount">
+							<span class="deal-discount md-title op-white fg-black">Save: {{ deal.discount }} </span>
+						</span>
 						<br/>
 						<br/>
 						<p class="deal-desc op-white md-body-2 padding10"> {{ deal.description }} </p>
