@@ -1,0 +1,25 @@
+<div class="dialog-overlay op-dark md-padding" layout="row" layout-align="center center">
+	<md-dialog>
+		<form ng-submit="submit()">
+			<md-dialog-content>
+				<div class="deal" layout="column">
+					It's located at {{deal.address}}.
+				</div>
+				<br/>
+				<br/>
+				<center>
+				<md-button class="md-primary md-raised padding" align="center" ng-click="feedMe(deal)">Navigate to Restaurant</md-button>
+				</center>
+			</md-dialog-content>
+			<md-toolbar>
+				<div class="md-toolbar-tools">
+					<h2>GO GET IT!</h2>
+					<span flex></span>
+					<md-button class="md-icon-button" ng-click="cancel()">
+						<md-icon style="font-size: 25px; margin-top: -27px;">&times;</md-icon>
+					</md-button>
+				</div>
+			</md-toolbar>
+		</form>
+	</md-dialog>
+</div>
