@@ -143,6 +143,6 @@ var deal_mocks = [
     
 var search_results_filter = function (deal)
                             {
-                              return deal.title.indexOf('pizza') > -1 || deal.title.indexOf('Fal') > -1;
+                              return deal.title.indexOf('Pizza') > -1 || deal.title.indexOf('Fal') > -1;
                             }
 var search_mocks = deal_mocks.filter(search_results_filter);
