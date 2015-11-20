@@ -131,7 +131,7 @@ var deal_mocks = [
         "image": "../img/pizza.jpg",
         "price": "Free",
         "seller": "PizzaHutCorp.",
-        "when": "2015-11-20T21:00:46.442Z",
+        "when": "23:30 - 24:00",
         "title": "Leftover Pizza from Geekim",
         "location": [
           32.066790, 34.788103
