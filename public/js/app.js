@@ -36,7 +36,14 @@ app.controller('layout', function($scope, $rootScope, $location, page, utils, $t
 app.controller('add', function($scope, $http, $location, $mdDialog) {
     
     // Default deal
-    $scope.deal = {'seller': 'test'};
+    $scope.deal = {'seller': 'PizzaHutCorp.',
+                   'title': 'Pizza', 
+                   'image': '../img/pizza.jpg',
+                   'description': 'Very tasty pizza with random toppings',
+                   'price': '3$',
+                   'address': 'Tel Aviv, Namir 20',
+                   'quantity': '20',                                                                                               
+                   'when' : '23:00'};
     
     // Save deal
     $scope.saveDeal = function()
@@ -61,14 +68,21 @@ app.controller('add', function($scope, $http, $location, $mdDialog) {
 });
 
 
-app.controller('main', function($scope, $http, $mdDialog) {
+app.controller('main', function($scope, $http, $route, $mdDialog) {
     console.log('main');
 
     $http.get('/deals')
         .success(function(data) {
-
             $scope.deals = data.deals;
         });
+        
+    $scope.deleteDeal = function(deal)
+    {
+        $http.delete('/deals/' + deal._id)
+        .success(function(data) {
+           $route.reload();
+        });     
+    }
 
     $scope.openDealModal = function(dealId) {
 
@@ -163,33 +177,24 @@ app.controller('gMap', function($scope, $http, $mdDialog, uiGmapGoogleMapApi) {
                     icon: '/img/foodicon.png'
                 })
             });
+    
+            var centerMap = {latitude: 32.066838, longitude: 34.787784};
+            var fakeLocation = {latitude: 32.066838, longitude: 34.787784};
+            
+            uiGmapGoogleMapApi.then(function(maps) {
+                $scope.map        = {
+                    center: centerMap,
+                    zoom: 16
+                };
 
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(function(position) {
-                    uiGmapGoogleMapApi.then(function(maps) {
-                        $scope.map        = {
-                            //center: {latitude: position.coords.latitude, longitude: position.coords.longitude},
-                            center: {latitude: 32.066838, longitude: 34.787784},
-                            markerSelf: {
-                                latitude: position.coords.latitude,
-                                longitude: position.coords.longitude
-                            },
-                            zoom: 16
-                        };
+                $scope.selfMarker = {
+                    id: 0,
+                    coords: fakeLocation,
+                    options: {draggable: true}
+                };
 
-                        $scope.selfMarker = {
-                            id: 0,
-                            //coords: {latitude: position.coords.latitude, longitude: position.coords.longitude},
-                            coords: {latitude: 32.066838, longitude: 34.787784},
-                            options: {draggable: true}
-                        };
-
-                        $scope.dealMarkers = dealMarkers;
-                    });
-                });
-            } else {
-                alert('GEO location is not allowed in your browser.');
-            }
+                $scope.dealMarkers = dealMarkers;
+            });
         }
     );
 });
