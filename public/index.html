@@ -1,59 +1,61 @@
 <html lang="en" ng-app="myApp">
 
 <head>
-    <meta name="viewport" content="initial-scale=1"/>
+    <meta name="viewport" content="initial-scale=1" />
     <link rel="stylesheet" href="/bower_components/angular-material/angular-material.min.css">
 
     <script src="/js/lib/jquery.js"></script>
-	<script src="/bower_components/moment/min/moment-with-locales.min.js"></script>
-    
+    <script src="/bower_components/moment/min/moment-with-locales.min.js"></script>
+
     <link rel="stylesheet" href="/css/metro/css/iconFont.min.css">
-	<link rel="stylesheet" href="/css/metro/css/metro.css">
-	<link rel="stylesheet" href="/css/metro/css/metro-rtl.css">
-	<link rel="stylesheet" href="/css/metro/css/metro-responsive.css">
-	<link rel="stylesheet" href="/css/metro/css/metro-icons.css">
-    
+    <link rel="stylesheet" href="/css/metro/css/metro.css">
+    <link rel="stylesheet" href="/css/metro/css/metro-rtl.css">
+    <link rel="stylesheet" href="/css/metro/css/metro-responsive.css">
+    <link rel="stylesheet" href="/css/metro/css/metro-icons.css">
+
     <link rel="stylesheet" href="./css/style.css">
-    
-    <script type="text/javascript">(function() {var walkme = document.createElement('script'); walkme.type = 'text/javascript'; walkme.async = true; walkme.src = 'http://cdn.walkme.com/users/891ac6ea3a3d460c93669a3410020170/walkme_891ac6ea3a3d460c93669a3410020170.js'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(walkme, s); window._walkmeConfig = {smartLoad:true}; })();</script>
+
+    <script type="text/javascript">
+        (function() {var walkme = document.createElement('script'); walkme.type = 'text/javascript'; walkme.async = true; walkme.src = 'http://cdn.walkme.com/users/891ac6ea3a3d460c93669a3410020170/walkme_891ac6ea3a3d460c93669a3410020170.js'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(walkme, s); window._walkmeConfig = {smartLoad:true}; })();
+    </script>
 </head>
 
 <body layout="column" ng-controller="AppController as vm">
     <md-toolbar>
-      <div class="md-toolbar-tools">
-        <h1 class="logo">
+        <div class="md-toolbar-tools">
+            <h1 class="logo">
           FeedMe
         </h1>
-        <span flex></span>
-        <md-button class="md-raised" ng-href="/#/add" aria-label="Learn More">
-          ADD
-        </md-button>
-      </div>
-    </md-toolbar>
-<div layout="row" flex>
-    <div layout="column" flex id="content" class="container">
-        <div class="view-container">
-            <div ng-view autoscroll class="view-frame"></div>
+            <span flex></span>
+            <md-button class="md-raised" ng-href="/#/add" aria-label="Learn More">
+                ADD
+            </md-button>
         </div>
-    </div>
-    <!-- Angular Material Dependencies -->
-    <script src="/js/lib/require.js"></script>
+    </md-toolbar>
+    <div layout="row" flex>
+        <div layout="column" flex id="content" class="container">
+            <div class="view-container">
+                <div ng-view autoscroll class="view-frame"></div>
+            </div>
+        </div>
+        <!-- Angular Material Dependencies -->
+        <script src="/js/lib/require.js"></script>
 
-    <script src='/bower_components/lodash/lodash.min.js'></script>
+        <script src='/bower_components/lodash/lodash.min.js'></script>
 
-    <script src="/bower_components/angular/angular.js"></script>
-    <script src='/bower_components/angular-simple-logger/dist/angular-simple-logger.min.js'></script>
-    <script src='/bower_components/angular-google-maps/dist/angular-google-maps.min.js'></script>
-    <script src="/bower_components/angular-cookies/angular-cookies.min.js"></script>
+        <script src="/bower_components/angular/angular.js"></script>
+        <script src='/bower_components/angular-simple-logger/dist/angular-simple-logger.min.js'></script>
+        <script src='/bower_components/angular-google-maps/dist/angular-google-maps.min.js'></script>
+        <script src="/bower_components/angular-cookies/angular-cookies.min.js"></script>
 
-    <script src="/bower_components/angular-aria/angular-aria.js"></script>
-    <script src="/bower_components/angular-animate/angular-animate.js"></script>
-    <script src="/bower_components/angular-material/angular-material.min.js"></script>
+        <script src="/bower_components/angular-aria/angular-aria.js"></script>
+        <script src="/bower_components/angular-animate/angular-animate.js"></script>
+        <script src="/bower_components/angular-material/angular-material.min.js"></script>
 
-    <script src="/bower_components/angular-route/angular-route.js"></script>
-    <script src="/bower_components/angular-resource/angular-resource.js"></script>
+        <script src="/bower_components/angular-route/angular-route.js"></script>
+        <script src="/bower_components/angular-resource/angular-resource.js"></script>
 
-    <script src="/js/app.js"></script>
+        <script src="/js/app.js"></script>
 
 </body>
 
