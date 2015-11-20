@@ -163,33 +163,26 @@ app.controller('gMap', function($scope, $http, $mdDialog, uiGmapGoogleMapApi) {
                     icon: '/img/foodicon.png'
                 })
             });
+    
+            var fakeLocation = {latitude: 32.066838, longitude: 34.787784};
+            
+            uiGmapGoogleMapApi.then(function(maps) {
+                $scope.map        = {
+                    //center: {latitude: position.coords.latitude, longitude: position.coords.longitude},
+                    center: fakeLocation,
+                    markerSelf: fakeLocation,
+                    zoom: 16
+                };
 
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(function(position) {
-                    uiGmapGoogleMapApi.then(function(maps) {
-                        $scope.map        = {
-                            //center: {latitude: position.coords.latitude, longitude: position.coords.longitude},
-                            center: {latitude: 32.066838, longitude: 34.787784},
-                            markerSelf: {
-                                latitude: position.coords.latitude,
-                                longitude: position.coords.longitude
-                            },
-                            zoom: 16
-                        };
+                $scope.selfMarker = {
+                    id: 0,
+                    //coords: {latitude: position.coords.latitude, longitude: position.coords.longitude},
+                    coords: fakeLocation,
+                    options: {draggable: true}
+                };
 
-                        $scope.selfMarker = {
-                            id: 0,
-                            //coords: {latitude: position.coords.latitude, longitude: position.coords.longitude},
-                            coords: {latitude: 32.066838, longitude: 34.787784},
-                            options: {draggable: true}
-                        };
-
-                        $scope.dealMarkers = dealMarkers;
-                    });
-                });
-            } else {
-                alert('GEO location is not allowed in your browser.');
-            }
+                $scope.dealMarkers = dealMarkers;
+            });
         }
     );
 });
