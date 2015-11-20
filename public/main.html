@@ -6,23 +6,26 @@
                 <md-content>
                     <div layout="row">
                         <md-input-container>
-                            <label>Street Name</label>
-                            <input>
+                            <label>What</label>
+                            <input ng-model="filter.what">
                         </md-input-container>
                         <md-input-container>
-                            <label>Free text</label>
-                            <input>
+                            <label>Where</label>
+                            <input ng-model="filter.where">
                         </md-input-container>
                         <md-input-container>
-                            <label>Time</label>
-                            <md-select ng-model="filter.time">
+                            <label>When</label>
+                            <md-select ng-model="filter.when">
                                 <md-option ng-repeat="(key, value) in filter.timerange" value="{{key}}">
                                     {{value}}
                                 </md-option>
                             </md-select>
                         </md-input-container>
                         <md-input-container>
-                            <md-button class="md-raised" style="top: 15px;">Go</md-button>
+                            <md-button class="md-button" ng-click="doFilter()" style="top: 12px; outline: none;">
+                                <md-icon ng-click="doFilter()" md-svg-src="img/ic_search_black_24px.svg" style="outline: none;"></md-icon>
+                            </md-button>
+
                         </md-input-container>
                     </div>
                     <ui-gmap-google-map center='map.center' zoom='map.zoom'>
@@ -30,12 +33,12 @@
                                 idKey='selfMarker.id'
                                 coords='selfMarker.coords'
                                 click=''
-                                options=''
+                                options='selfMarker.options'
                                 events=''
                                 control=''
                                 >
                         </ui-gmap-marker>
-                        <ui-gmap-markers models="dealMarkers" coords="'self'" icon="'icon'" click="openDealModal(id)"></ui-gmap-markers>
+                        <ui-gmap-markers models="dealMarkers" doRebuildAll="true" coords="'self'" icon="'icon'" options="'options'" click="openDealModal(id)"></ui-gmap-markers>
                     </ui-gmap-google-map>
                 </md-content>
             </div>
@@ -43,13 +46,38 @@
         <md-tab label="List">
             <div ng-cloak>
                 <md-content>
+                    <div layout="row">
+                        <md-input-container>
+                            <label>What</label>
+                            <input ng-model="filter.what">
+                        </md-input-container>
+                        <md-input-container>
+                            <label>Where</label>
+                            <input ng-model="filter.where">
+                        </md-input-container>
+                        <md-input-container>
+                            <label>When</label>
+                            <md-select ng-model="filter.when">
+                                <md-option ng-repeat="(key, value) in filter.timerange" value="{{key}}">
+                                    {{value}}
+                                </md-option>
+                            </md-select>
+                        </md-input-container>
+                        <md-input-container>
+                            <md-button class="md-button" ng-click="doFilter()" style="top: 12px; outline: none;">
+                                <md-icon ng-click="doFilter()" md-svg-src="img/ic_search_black_24px.svg"
+                                         style="outline: none;"></md-icon>
+                            </md-button>
+
+                        </md-input-container>
+                    </div>
                     <md-list>
                         <md-list-item class="md-3-line md-long-text" ng-repeat="deal in deals" style="position: relative;">
                             <div class="md-list-item-text" style="padding-left: 100px; padding-right: 100px;">
                                 <md-button class="md-raised md-primary" style="position: absolute; bottom: 10px; right: 10px;">Feed me!</md-button>
                                 <div style="position: absolute; top: 10px; right: 15px;" ng-click="deleteDeal(deal)">.</div>
 
-                                <img ng-src="{{deal.image}}" class="md-avatar" alt="{{deal.title}}" width="90" style="border-radius: 3px; float: left; margin-left: -100px;">
+                                <img ng-src="{{deal.image}}" class="md-avatar" ng-click="feedMe(deal)" alt="{{deal.title}}" width="90" style="border-radius: 3px; float: left; margin-left: -100px;">
                                 <h3>{{ deal.title }}</h3>
                                 <h4>{{ deal.description }}</h4>
 
