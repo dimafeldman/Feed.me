@@ -150,6 +150,19 @@ app.controller('main', function($scope, $http, $route, $mdDialog) {
 
 app.controller('dealModal', function($scope, $mdDialog, $http, $route, $location, deal) {
     $scope.deal = deal;
+    
+    
+    $scope.feedMe = function(deal)
+    {
+        $mdDialog.show({
+            templateUrl: './feedme-modal.html',
+            controller: 'dealModal',
+            parent: angular.element(document.body),
+            locals: {
+            deal: deal },
+            clickOutsideToClose: true
+        });
+    }
 
     $scope.openDealModal = function(dealId) {
         $mdDialog.show({
