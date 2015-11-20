@@ -156,6 +156,18 @@ app.controller('main', function($scope, $http, $route, $mdDialog) {
         })
     };
 
+    $scope.feedMe = function(deal)
+    {
+        $mdDialog.show({
+            templateUrl: './feedme-modal.html',
+            controller: 'dealModal',
+            parent: angular.element(document.body),
+            locals: {
+            deal: deal },
+            clickOutsideToClose: true
+        });
+    }
+    
     //$scope.openDealModal('1');
 });
 
