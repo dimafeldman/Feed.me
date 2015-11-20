@@ -1,8 +1,30 @@
+
 <md-content layout="column" flex class="md-padding">
     <md-tabs md-dynamic-height md-border-bottom>
         <md-tab label="Show by location">
             <div ng-controller="gMap" ng-cloak>
                 <md-content>
+                    <div layout="row">
+                        <md-input-container>
+                            <label>Street Name</label>
+                            <input>
+                        </md-input-container>
+                        <md-input-container>
+                            <label>Free text</label>
+                            <input>
+                        </md-input-container>
+                        <md-input-container>
+                            <label>Time</label>
+                            <md-select ng-model="filter.time">
+                                <md-option ng-repeat="(key, value) in filter.timerange" value="{{key}}">
+                                    {{value}}
+                                </md-option>
+                            </md-select>
+                        </md-input-container>
+                        <md-input-container>
+                            <md-button class="md-raised" style="top: 15px;">Go</md-button>
+                        </md-input-container>
+                    </div>
                     <ui-gmap-google-map center='map.center' zoom='map.zoom'>
                         <ui-gmap-marker
                                 idKey='selfMarker.id'
