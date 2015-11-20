@@ -125,17 +125,16 @@ var deal_mocks = [
       {
         "_id": "564e7dde882f6c741e88f034",
         "created": "2015-11-20T01:56:46.449Z",
-        "description": "Very tasty pizza with random toppings",
+        "description": "Get it while it's still fresh!",
         "quantity": 20,
-        "address": "Tel Aviv, Haarbaa 20",
+        "address": "2 Toshia St, Tel Aviv",
         "image": "../img/pizza.jpg",
-        "price": "3$",
+        "price": "Free",
         "seller": "PizzaHutCorp.",
         "when": "2015-11-20T21:00:46.442Z",
-        "title": "Pizza",
+        "title": "Leftover Pizza from Geekim",
         "location": [
-          32.0703337,
-          34.7854527
+          32.066790, 34.788103
         ],
         "interested": 0,
         "__v": 0
