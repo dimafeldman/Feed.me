@@ -110,6 +110,9 @@ public class Main extends Activity
         {
             // Hide loading
             mLoading.setVisibility(View.GONE);
+
+            // Show browser
+            mBrowser.setVisibility(View.VISIBLE);
         }
     }
 

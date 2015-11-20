@@ -208,11 +208,10 @@ app.controller('gMap', function($scope, $http, $mdDialog, uiGmapGoogleMapApi) {
             $scope.selfMarker = {
                 id: 0,
                 coords: fakeLocation,
-                options: {draggable: true}
+                options: {icon: '/img/myicon.png'}
             };
 
             $scope.dealMarkers = dealMarkers;
-            //uiGmapGoogleMapApi.newModels($scope.dealMarkers);
         });
 
     };

@@ -2,7 +2,7 @@ md-dialog {
     opacity: 0;
     min-width: 240px;
     max-height: 100%;
-    width:60%;
+    width:59%;
 }
 
 @media screen and (max-width: 700px) {
@@ -24,7 +24,7 @@ md-dialog md-dialog-content { overflow: hidden; }
 
 .logo {
     text-indent: -9999px;
-    background: url('../img/logo.png') center center no-repeat;
+    background: url('../img/logo.png') center left no-repeat;
     background-size: auto 44px;
     height: 64px;
     width: 100%;
