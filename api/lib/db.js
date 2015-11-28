@@ -5,7 +5,7 @@ var mongoose = require('mongoose');
 var config = require('../../config')
 
 // Get config file for SQL connection
-var connection = mongoose.connect(config.db);
+//var connection = mongoose.connect(config.db);
 
 // Return connection
-module.exports = connection;
+module.exports = mongoose;
